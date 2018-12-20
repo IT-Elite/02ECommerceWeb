@@ -1,4 +1,4 @@
-﻿@model ECommerce.Models.Product
+﻿@model ECommerce.Models.ProductDetail
 
 @{
     ViewBag.Title = "Details";
@@ -34,6 +34,23 @@
             @Html.DisplayFor(model => model.Price)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Keyword)
+        </dt>
+
+        <dd>
+
+            @Html.DisplayFor(model => model.Keyword)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Iamge)
+        </dt>
+
+        <dd>
+
+            @Html.DisplayFor(model => model.Iamge)
+        </dd>
     </dl>
 </div>
 <p>

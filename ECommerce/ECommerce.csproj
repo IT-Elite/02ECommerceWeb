@@ -158,10 +158,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\ProductDetail.cs" />
-    <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\ECommerceDBContext.cs" />
-    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\DatabaseConnection\SqlHelper.cs" />
+    <Compile Include="Models\Entities\ImageURL.cs" />
+    <Compile Include="Models\Entities\ProductDetail.cs" />
+    <Compile Include="Models\Entities\Category.cs" />
+    <Compile Include="Models\DatabaseConnection\ECommerceDBContext.cs" />
+    <Compile Include="Models\Entities\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

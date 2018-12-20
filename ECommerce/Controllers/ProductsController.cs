@@ -13,7 +13,8 @@ namespace ECommerce.Controllers
     public class ProductsController : Controller
     {
         private ECommerceDBContext db = new ECommerceDBContext();
-
+        private KeywordList kl = new KeywordList();
+        private ImageList il = new ImageList();
         // GET: Products
         public ActionResult Index()
         {
@@ -30,14 +31,18 @@ namespace ECommerce.Controllers
             
            
              Product product = db.Products.Find(id);
-           
+            List<String> keyword =kl.FindKeyList(id);
+            List<String> imageList = il.FindIamgeList(id);
+
+            ProductDetail pd = new ProductDetail(product,keyword,imageList);
+            
             
 
             if (product == null)
             {
                 return HttpNotFound();
             }
-            return View(product);
+            return View(pd);
         }
 
         // GET: Products/Create
