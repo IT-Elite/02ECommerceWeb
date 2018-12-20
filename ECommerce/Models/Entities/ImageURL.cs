@@ -27,13 +27,13 @@ namespace ECommerce.Models
         public List<String> FindIamgeList(int? id)
         {
             SqlHelper dal = new SqlHelper();
-            String sql = "Select Image from ImageURL where ProductID=" + id;
+            String sql = "Select imageURL from IMGURL where productID=" + id;
             DataTable dt = dal.ExecuteSql(sql);
 
             foreach (DataRow dr in dt.Rows)
             {
 
-                String a = dr["Image"].ToString();
+                String a = dr["imageURL"].ToString();
                 imageList.Add(a);
 
 

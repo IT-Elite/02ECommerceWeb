@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ECommerce.Models.Product>
+﻿@model ECommerce.Models.ProductCollection
 
 @{
     ViewBag.Title = "Index";
@@ -12,13 +12,16 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ProductName)
+          name 
+            @*@Html.DisplayNameFor(model => model.ProductName)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            descripiton
+            @*@Html.DisplayNameFor(model => model.Description)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Price)
+            price
+            @*@Html.DisplayNameFor(model => model.Price)*@
         </th>
       
         <th></th>
