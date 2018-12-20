@@ -11,7 +11,7 @@ namespace ECommerce.Models
     public String Description { get; set; }
     public decimal Price { get; set; }
     public List<string> Keyword { get; set; }
-     public List<string> Iamge { get; set; }
+     public List<string> Image { get; set; }
 
 
 
@@ -23,7 +23,7 @@ namespace ECommerce.Models
             this.Description = product.Description;
             this.Price = product.Price;
             this.Keyword = keyword;
-            this.Iamge = Image;
+            this.Image = Image;
              
 
         }
