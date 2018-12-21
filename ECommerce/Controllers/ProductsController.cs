@@ -29,14 +29,11 @@ namespace ECommerce.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-
             Product product = new Product(id);
             List<String> keyword = kl.FindKeyList(id);
             List<String> imageList = il.FindIamgeList(id);
 
             ProductDetail pd = new ProductDetail(product, keyword, imageList);
-
-
 
             if (product == null)
             {

@@ -33,24 +33,28 @@
         <dd>
             @Html.DisplayFor(model => model.Price)
         </dd>
+        @foreach (var item in Model.Keyword)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Keyword)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Keyword)
-        </dt>
+            <dd>
 
-        <dd>
+                @Html.DisplayFor(model => item)
+            </dd>}
+        @foreach (var item in Model.Image)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Image)
+            </dt>
 
-            @Html.DisplayFor(model => model.Keyword)
-        </dd>
+            <dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
 
-        <dd>
+                @Html.DisplayFor(modelItem => item)
 
-            @Html.DisplayFor(model => model.Image)
-        </dd>
+            </dd>}
     </dl>
 </div>
 <p>
