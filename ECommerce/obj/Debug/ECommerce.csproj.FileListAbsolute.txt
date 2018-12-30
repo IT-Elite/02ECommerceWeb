@@ -289,3 +289,9 @@ C:\Users\Justin\source\repos\IT-Elite\02ECommerceWeb\ECommerce\bin\Microsoft.AI.
 C:\Users\Justin\source\repos\IT-Elite\02ECommerceWeb\ECommerce\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\Justin\source\repos\IT-Elite\02ECommerceWeb\ECommerce\obj\Debug\ECommerce.csproj.CoreCompileInputs.cache
 C:\Users\Justin\source\repos\IT-Elite\02ECommerceWeb\ECommerce\obj\Debug\ECommerce.csproj.CopyComplete
+D:\ECommerce\02ECommerceWeb\ECommerce\bin\System.Net.Http.Formatting.dll
+D:\ECommerce\02ECommerceWeb\ECommerce\bin\System.Web.Http.dll
+D:\ECommerce\02ECommerceWeb\ECommerce\bin\System.Web.Http.WebHost.dll
+D:\ECommerce\02ECommerceWeb\ECommerce\bin\System.Net.Http.Formatting.xml
+D:\ECommerce\02ECommerceWeb\ECommerce\bin\System.Web.Http.xml
+D:\ECommerce\02ECommerceWeb\ECommerce\bin\System.Web.Http.WebHost.xml

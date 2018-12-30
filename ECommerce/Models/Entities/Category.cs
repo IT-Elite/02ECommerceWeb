@@ -29,13 +29,13 @@ namespace ECommerce.Models
         public List<String> FindKeyList(int? id)
         {
             SqlHelper dal = new SqlHelper();
-            String sql = "Select category from CATEGORY where productID=" + id;
+            String sql = "Select keyword from CATEGORY where productID=" + id;
             DataTable dt = dal.ExecuteSql(sql);
 
             foreach (DataRow dr in dt.Rows)
             {
 
-                String a = dr["category"].ToString();
+                String a = dr["keyword"].ToString();
                 keywordList.Add(a);
 
 
