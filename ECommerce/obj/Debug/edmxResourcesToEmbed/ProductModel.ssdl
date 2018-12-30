@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProductModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CATEGORY">
+    <Key>
+      <PropertyRef Name="keyword" />
+      <PropertyRef Name="productID" />
+    </Key>
+    <Property Name="keyword" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="productID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="IMGURL">
+    <Key>
+      <PropertyRef Name="imageURL" />
+    </Key>
+    <Property Name="imageURL" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="productID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PRODUCT">
+    <Key>
+      <PropertyRef Name="productID" />
+    </Key>
+    <Property Name="productID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="price" Type="float" Nullable="false" />
+  </EntityType>
+  <Association Name="PRODUCT_CATEGORY_fk">
+    <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
+    <End Role="CATEGORY" Type="Self.CATEGORY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCT">
+        <PropertyRef Name="productID" />
+      </Principal>
+      <Dependent Role="CATEGORY">
+        <PropertyRef Name="productID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PRODUCT_IMAGEURL_fk">
+    <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
+    <End Role="IMGURL" Type="Self.IMGURL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCT">
+        <PropertyRef Name="productID" />
+      </Principal>
+      <Dependent Role="IMGURL">
+        <PropertyRef Name="productID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="USP_GetALLCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="USP.GetALLCategory" />
+  <Function Name="USP_GetProductbyCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="USP.GetProductbyCategory">
+    <Parameter Name="keyword" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="USP_GetProductDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="USP.GetProductDetails">
+    <Parameter Name="productID" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="ProductModelStoreContainer">
+    <EntitySet Name="CATEGORY" EntityType="Self.CATEGORY" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="IMGURL" EntityType="Self.IMGURL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PRODUCT" EntityType="Self.PRODUCT" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="PRODUCT_CATEGORY_fk" Association="Self.PRODUCT_CATEGORY_fk">
+      <End Role="PRODUCT" EntitySet="PRODUCT" />
+      <End Role="CATEGORY" EntitySet="CATEGORY" />
+    </AssociationSet>
+    <AssociationSet Name="PRODUCT_IMAGEURL_fk" Association="Self.PRODUCT_IMAGEURL_fk">
+      <End Role="PRODUCT" EntitySet="PRODUCT" />
+      <End Role="IMGURL" EntitySet="IMGURL" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

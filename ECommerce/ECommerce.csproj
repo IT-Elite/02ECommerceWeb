@@ -166,11 +166,18 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\WebApiConfig2.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="CATEGORY.cs">
+      <DependentUpon>ProductModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="IMGURL.cs">
+      <DependentUpon>ProductModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DatabaseConnection\SqlHelper.cs" />
     <Compile Include="Models\Entities\ImageURL.cs" />
@@ -178,7 +185,31 @@
     <Compile Include="Models\Entities\Category.cs" />
     <Compile Include="Models\DatabaseConnection\ECommerceDBContext.cs" />
     <Compile Include="Models\Entities\Product.cs" />
+    <Compile Include="PRODUCT.cs">
+      <DependentUpon>ProductModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProductModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProductModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProductModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="USP_GetProductbyCategory_Result.cs">
+      <DependentUpon>ProductModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="USP_GetProductDetails_Result.cs">
+      <DependentUpon>ProductModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\ECommerce.mdf" />
@@ -193,12 +224,30 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="ProductModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ProductModel.Context.cs</LastGenOutput>
+      <DependentUpon>ProductModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="ProductModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ProductModel.edmx</DependentUpon>
+      <LastGenOutput>ProductModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="package.json" />
+    <EntityDeploy Include="ProductModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ProductModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="packages.config" />
+    <Content Include="ProductModel.edmx.diagram">
+      <DependentUpon>ProductModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

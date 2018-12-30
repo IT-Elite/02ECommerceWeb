@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ProductModelStoreContainer" CdmEntityContainer="ECommerceEntities">
+    <EntitySetMapping Name="CATEGORies">
+      <EntityTypeMapping TypeName="ProductModel.CATEGORY">
+        <MappingFragment StoreEntitySet="CATEGORY">
+          <ScalarProperty Name="keyword" ColumnName="keyword" />
+          <ScalarProperty Name="productID" ColumnName="productID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IMGURLs">
+      <EntityTypeMapping TypeName="ProductModel.IMGURL">
+        <MappingFragment StoreEntitySet="IMGURL">
+          <ScalarProperty Name="imageURL" ColumnName="imageURL" />
+          <ScalarProperty Name="productID" ColumnName="productID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PRODUCTs">
+      <EntityTypeMapping TypeName="ProductModel.PRODUCT">
+        <MappingFragment StoreEntitySet="PRODUCT">
+          <ScalarProperty Name="productID" ColumnName="productID" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="price" ColumnName="price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="USP_GetALLCategory" FunctionName="ProductModel.Store.USP_GetALLCategory" />
+    <FunctionImportMapping FunctionImportName="USP_GetProductbyCategory" FunctionName="ProductModel.Store.USP_GetProductbyCategory">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProductModel.USP_GetProductbyCategory_Result">
+          <ScalarProperty Name="productID" ColumnName="productID" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="imageURL" ColumnName="imageURL" />
+          <ScalarProperty Name="keyword" ColumnName="keyword" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="USP_GetProductDetails" FunctionName="ProductModel.Store.USP_GetProductDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="ProductModel.USP_GetProductDetails_Result">
+          <ScalarProperty Name="productID" ColumnName="productID" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="imageURL" ColumnName="imageURL" />
+          <ScalarProperty Name="keyword" ColumnName="keyword" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

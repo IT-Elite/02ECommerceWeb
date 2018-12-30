@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ProductModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CATEGORY">
+          <Key>
+            <PropertyRef Name="keyword" />
+            <PropertyRef Name="productID" />
+          </Key>
+          <Property Name="keyword" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="productID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IMGURL">
+          <Key>
+            <PropertyRef Name="imageURL" />
+          </Key>
+          <Property Name="imageURL" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="productID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRODUCT">
+          <Key>
+            <PropertyRef Name="productID" />
+          </Key>
+          <Property Name="productID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="price" Type="float" Nullable="false" />
+        </EntityType>
+        <Association Name="PRODUCT_CATEGORY_fk">
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
+          <End Role="CATEGORY" Type="Self.CATEGORY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="productID" />
+            </Principal>
+            <Dependent Role="CATEGORY">
+              <PropertyRef Name="productID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRODUCT_IMAGEURL_fk">
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
+          <End Role="IMGURL" Type="Self.IMGURL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="productID" />
+            </Principal>
+            <Dependent Role="IMGURL">
+              <PropertyRef Name="productID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="USP_GetALLCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="USP.GetALLCategory" />
+        <Function Name="USP_GetProductbyCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="USP.GetProductbyCategory">
+          <Parameter Name="keyword" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="USP_GetProductDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="USP.GetProductDetails">
+          <Parameter Name="productID" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="ProductModelStoreContainer">
+          <EntitySet Name="CATEGORY" EntityType="Self.CATEGORY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IMGURL" EntityType="Self.IMGURL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODUCT" EntityType="Self.PRODUCT" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="PRODUCT_CATEGORY_fk" Association="Self.PRODUCT_CATEGORY_fk">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="CATEGORY" EntitySet="CATEGORY" />
+          </AssociationSet>
+          <AssociationSet Name="PRODUCT_IMAGEURL_fk" Association="Self.PRODUCT_IMAGEURL_fk">
+            <End Role="PRODUCT" EntitySet="PRODUCT" />
+            <End Role="IMGURL" EntitySet="IMGURL" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProductModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CATEGORY">
+          <Key>
+            <PropertyRef Name="keyword" />
+            <PropertyRef Name="productID" />
+          </Key>
+          <Property Name="keyword" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="productID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PRODUCT" Relationship="Self.PRODUCT_CATEGORY_fk" FromRole="CATEGORY" ToRole="PRODUCT" />
+        </EntityType>
+        <EntityType Name="IMGURL">
+          <Key>
+            <PropertyRef Name="imageURL" />
+          </Key>
+          <Property Name="imageURL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="productID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PRODUCT" Relationship="Self.PRODUCT_IMAGEURL_fk" FromRole="IMGURL" ToRole="PRODUCT" />
+        </EntityType>
+        <EntityType Name="PRODUCT">
+          <Key>
+            <PropertyRef Name="productID" />
+          </Key>
+          <Property Name="productID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="price" Type="Double" Nullable="false" />
+          <NavigationProperty Name="CATEGORies" Relationship="Self.PRODUCT_CATEGORY_fk" FromRole="PRODUCT" ToRole="CATEGORY" />
+          <NavigationProperty Name="IMGURLs" Relationship="Self.PRODUCT_IMAGEURL_fk" FromRole="PRODUCT" ToRole="IMGURL" />
+        </EntityType>
+        <Association Name="PRODUCT_CATEGORY_fk">
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
+          <End Role="CATEGORY" Type="Self.CATEGORY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="productID" />
+            </Principal>
+            <Dependent Role="CATEGORY">
+              <PropertyRef Name="productID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PRODUCT_IMAGEURL_fk">
+          <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
+          <End Role="IMGURL" Type="Self.IMGURL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCT">
+              <PropertyRef Name="productID" />
+            </Principal>
+            <Dependent Role="IMGURL">
+              <PropertyRef Name="productID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ECommerceEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CATEGORies" EntityType="Self.CATEGORY" />
+          <EntitySet Name="IMGURLs" EntityType="Self.IMGURL" />
+          <EntitySet Name="PRODUCTs" EntityType="Self.PRODUCT" />
+          <AssociationSet Name="PRODUCT_CATEGORY_fk" Association="Self.PRODUCT_CATEGORY_fk">
+            <End Role="PRODUCT" EntitySet="PRODUCTs" />
+            <End Role="CATEGORY" EntitySet="CATEGORies" />
+          </AssociationSet>
+          <AssociationSet Name="PRODUCT_IMAGEURL_fk" Association="Self.PRODUCT_IMAGEURL_fk">
+            <End Role="PRODUCT" EntitySet="PRODUCTs" />
+            <End Role="IMGURL" EntitySet="IMGURLs" />
+          </AssociationSet>
+          <FunctionImport Name="USP_GetALLCategory" ReturnType="Collection(String)" />
+          <FunctionImport Name="USP_GetProductbyCategory" ReturnType="Collection(ProductModel.USP_GetProductbyCategory_Result)">
+            <Parameter Name="keyword" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USP_GetProductDetails" ReturnType="Collection(ProductModel.USP_GetProductDetails_Result)">
+            <Parameter Name="productID" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="USP_GetProductbyCategory_Result">
+          <Property Type="Int32" Name="productID" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="description" Nullable="false" />
+          <Property Type="Double" Name="price" Nullable="false" />
+          <Property Type="String" Name="imageURL" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="keyword" Nullable="true" MaxLength="20" />
+        </ComplexType>
+        <ComplexType Name="USP_GetProductDetails_Result">
+          <Property Type="Int32" Name="productID" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="description" Nullable="false" />
+          <Property Type="Double" Name="price" Nullable="false" />
+          <Property Type="String" Name="imageURL" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="keyword" Nullable="true" MaxLength="20" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProductModelStoreContainer" CdmEntityContainer="ECommerceEntities">
+          <EntitySetMapping Name="CATEGORies">
+            <EntityTypeMapping TypeName="ProductModel.CATEGORY">
+              <MappingFragment StoreEntitySet="CATEGORY">
+                <ScalarProperty Name="keyword" ColumnName="keyword" />
+                <ScalarProperty Name="productID" ColumnName="productID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IMGURLs">
+            <EntityTypeMapping TypeName="ProductModel.IMGURL">
+              <MappingFragment StoreEntitySet="IMGURL">
+                <ScalarProperty Name="imageURL" ColumnName="imageURL" />
+                <ScalarProperty Name="productID" ColumnName="productID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCTs">
+            <EntityTypeMapping TypeName="ProductModel.PRODUCT">
+              <MappingFragment StoreEntitySet="PRODUCT">
+                <ScalarProperty Name="productID" ColumnName="productID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="USP_GetALLCategory" FunctionName="ProductModel.Store.USP_GetALLCategory" />
+          <FunctionImportMapping FunctionImportName="USP_GetProductbyCategory" FunctionName="ProductModel.Store.USP_GetProductbyCategory">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProductModel.USP_GetProductbyCategory_Result">
+                <ScalarProperty Name="productID" ColumnName="productID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="imageURL" ColumnName="imageURL" />
+                <ScalarProperty Name="keyword" ColumnName="keyword" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="USP_GetProductDetails" FunctionName="ProductModel.Store.USP_GetProductDetails">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ProductModel.USP_GetProductDetails_Result">
+                <ScalarProperty Name="productID" ColumnName="productID" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="imageURL" ColumnName="imageURL" />
+                <ScalarProperty Name="keyword" ColumnName="keyword" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

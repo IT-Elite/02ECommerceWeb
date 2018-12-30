@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ProductModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CATEGORY">
+    <Key>
+      <PropertyRef Name="keyword" />
+      <PropertyRef Name="productID" />
+    </Key>
+    <Property Name="keyword" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="productID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="PRODUCT" Relationship="Self.PRODUCT_CATEGORY_fk" FromRole="CATEGORY" ToRole="PRODUCT" />
+  </EntityType>
+  <EntityType Name="IMGURL">
+    <Key>
+      <PropertyRef Name="imageURL" />
+    </Key>
+    <Property Name="imageURL" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="productID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="PRODUCT" Relationship="Self.PRODUCT_IMAGEURL_fk" FromRole="IMGURL" ToRole="PRODUCT" />
+  </EntityType>
+  <EntityType Name="PRODUCT">
+    <Key>
+      <PropertyRef Name="productID" />
+    </Key>
+    <Property Name="productID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="price" Type="Double" Nullable="false" />
+    <NavigationProperty Name="CATEGORies" Relationship="Self.PRODUCT_CATEGORY_fk" FromRole="PRODUCT" ToRole="CATEGORY" />
+    <NavigationProperty Name="IMGURLs" Relationship="Self.PRODUCT_IMAGEURL_fk" FromRole="PRODUCT" ToRole="IMGURL" />
+  </EntityType>
+  <Association Name="PRODUCT_CATEGORY_fk">
+    <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
+    <End Role="CATEGORY" Type="Self.CATEGORY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCT">
+        <PropertyRef Name="productID" />
+      </Principal>
+      <Dependent Role="CATEGORY">
+        <PropertyRef Name="productID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PRODUCT_IMAGEURL_fk">
+    <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
+    <End Role="IMGURL" Type="Self.IMGURL" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCT">
+        <PropertyRef Name="productID" />
+      </Principal>
+      <Dependent Role="IMGURL">
+        <PropertyRef Name="productID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ECommerceEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CATEGORies" EntityType="Self.CATEGORY" />
+    <EntitySet Name="IMGURLs" EntityType="Self.IMGURL" />
+    <EntitySet Name="PRODUCTs" EntityType="Self.PRODUCT" />
+    <AssociationSet Name="PRODUCT_CATEGORY_fk" Association="Self.PRODUCT_CATEGORY_fk">
+      <End Role="PRODUCT" EntitySet="PRODUCTs" />
+      <End Role="CATEGORY" EntitySet="CATEGORies" />
+    </AssociationSet>
+    <AssociationSet Name="PRODUCT_IMAGEURL_fk" Association="Self.PRODUCT_IMAGEURL_fk">
+      <End Role="PRODUCT" EntitySet="PRODUCTs" />
+      <End Role="IMGURL" EntitySet="IMGURLs" />
+    </AssociationSet>
+    <FunctionImport Name="USP_GetALLCategory" ReturnType="Collection(String)" />
+    <FunctionImport Name="USP_GetProductbyCategory" ReturnType="Collection(ProductModel.USP_GetProductbyCategory_Result)">
+      <Parameter Name="keyword" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="USP_GetProductDetails" ReturnType="Collection(ProductModel.USP_GetProductDetails_Result)">
+      <Parameter Name="productID" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="USP_GetProductbyCategory_Result">
+    <Property Type="Int32" Name="productID" Nullable="false" />
+    <Property Type="String" Name="name" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="description" Nullable="false" />
+    <Property Type="Double" Name="price" Nullable="false" />
+    <Property Type="String" Name="imageURL" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="keyword" Nullable="true" MaxLength="20" />
+  </ComplexType>
+  <ComplexType Name="USP_GetProductDetails_Result">
+    <Property Type="Int32" Name="productID" Nullable="false" />
+    <Property Type="String" Name="name" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="description" Nullable="false" />
+    <Property Type="Double" Name="price" Nullable="false" />
+    <Property Type="String" Name="imageURL" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="keyword" Nullable="true" MaxLength="20" />
+  </ComplexType>
+</Schema>
