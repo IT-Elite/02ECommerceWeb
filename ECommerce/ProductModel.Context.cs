@@ -27,9 +27,12 @@ namespace ECommerce
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<CATEGORY> CATEGORies { get; set; }
         public virtual DbSet<IMGURL> IMGURLs { get; set; }
+        public virtual DbSet<KEYWORD> KEYWORDS { get; set; }
+        public virtual DbSet<ORDER> ORDERs { get; set; }
+        public virtual DbSet<ORDERITEM> ORDERITEMs { get; set; }
         public virtual DbSet<PRODUCT> PRODUCTs { get; set; }
+        public virtual DbSet<TOP10SELLER> TOP10SELLER { get; set; }
     
         public virtual ObjectResult<string> USP_GetALLCategory()
         {

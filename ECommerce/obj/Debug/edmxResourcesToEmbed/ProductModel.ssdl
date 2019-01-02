@@ -15,6 +15,38 @@
     <Property Name="imageURL" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="productID" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="KEYWORDS">
+    <Key>
+      <PropertyRef Name="keyword" />
+    </Key>
+    <Property Name="keyword" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ORDER">
+    <Key>
+      <PropertyRef Name="orderID" />
+    </Key>
+    <Property Name="orderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="email" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="payStatus" Type="bit" Nullable="false" />
+    <Property Name="orderTime" Type="datetime" Nullable="false" />
+    <Property Name="fistname" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="lastname" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="street" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="city" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="state" Type="nvarchar" MaxLength="5" Nullable="false" />
+    <Property Name="postcode" Type="nvarchar" MaxLength="6" Nullable="false" />
+    <Property Name="phoneNumber" Type="nvarchar" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ORDERITEM">
+    <Key>
+      <PropertyRef Name="productID" />
+      <PropertyRef Name="orderID" />
+    </Key>
+    <Property Name="productID" Type="int" Nullable="false" />
+    <Property Name="orderID" Type="int" Nullable="false" />
+    <Property Name="quantity" Type="int" Nullable="false" />
+    <Property Name="price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+  </EntityType>
   <EntityType Name="PRODUCT">
     <Key>
       <PropertyRef Name="productID" />
@@ -22,8 +54,39 @@
     <Property Name="productID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="name" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="description" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="price" Type="float" Nullable="false" />
+    <Property Name="price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
   </EntityType>
+  <EntityType Name="TOP10SELLER">
+    <Key>
+      <PropertyRef Name="productID" />
+    </Key>
+    <Property Name="productID" Type="int" Nullable="false" />
+    <Property Name="sales" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="KEYWORS_CATEGORY_fk">
+    <End Role="KEYWORDS" Type="Self.KEYWORDS" Multiplicity="1" />
+    <End Role="CATEGORY" Type="Self.CATEGORY" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KEYWORDS">
+        <PropertyRef Name="keyword" />
+      </Principal>
+      <Dependent Role="CATEGORY">
+        <PropertyRef Name="keyword" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ORDER_ORDERITEM_fk">
+    <End Role="ORDER" Type="Self.ORDER" Multiplicity="1" />
+    <End Role="ORDERITEM" Type="Self.ORDERITEM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ORDER">
+        <PropertyRef Name="orderID" />
+      </Principal>
+      <Dependent Role="ORDERITEM">
+        <PropertyRef Name="orderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="PRODUCT_CATEGORY_fk">
     <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
     <End Role="CATEGORY" Type="Self.CATEGORY" Multiplicity="*" />
@@ -48,6 +111,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="PRODUCT_ORDERITEM_fk">
+    <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
+    <End Role="ORDERITEM" Type="Self.ORDERITEM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCT">
+        <PropertyRef Name="productID" />
+      </Principal>
+      <Dependent Role="ORDERITEM">
+        <PropertyRef Name="productID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PRODUCT_TOP10SELLER_fk">
+    <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
+    <End Role="TOP10SELLER" Type="Self.TOP10SELLER" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCT">
+        <PropertyRef Name="productID" />
+      </Principal>
+      <Dependent Role="TOP10SELLER">
+        <PropertyRef Name="productID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Function Name="USP_GetALLCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="USP.GetALLCategory" />
   <Function Name="USP_GetProductbyCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" StoreFunctionName="USP.GetProductbyCategory">
     <Parameter Name="keyword" Type="varchar" Mode="In" />
@@ -58,7 +145,19 @@
   <EntityContainer Name="ProductModelStoreContainer">
     <EntitySet Name="CATEGORY" EntityType="Self.CATEGORY" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="IMGURL" EntityType="Self.IMGURL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KEYWORDS" EntityType="Self.KEYWORDS" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ORDER" EntityType="Self.ORDER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ORDERITEM" EntityType="Self.ORDERITEM" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PRODUCT" EntityType="Self.PRODUCT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TOP10SELLER" EntityType="Self.TOP10SELLER" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="KEYWORS_CATEGORY_fk" Association="Self.KEYWORS_CATEGORY_fk">
+      <End Role="KEYWORDS" EntitySet="KEYWORDS" />
+      <End Role="CATEGORY" EntitySet="CATEGORY" />
+    </AssociationSet>
+    <AssociationSet Name="ORDER_ORDERITEM_fk" Association="Self.ORDER_ORDERITEM_fk">
+      <End Role="ORDER" EntitySet="ORDER" />
+      <End Role="ORDERITEM" EntitySet="ORDERITEM" />
+    </AssociationSet>
     <AssociationSet Name="PRODUCT_CATEGORY_fk" Association="Self.PRODUCT_CATEGORY_fk">
       <End Role="PRODUCT" EntitySet="PRODUCT" />
       <End Role="CATEGORY" EntitySet="CATEGORY" />
@@ -66,6 +165,14 @@
     <AssociationSet Name="PRODUCT_IMAGEURL_fk" Association="Self.PRODUCT_IMAGEURL_fk">
       <End Role="PRODUCT" EntitySet="PRODUCT" />
       <End Role="IMGURL" EntitySet="IMGURL" />
+    </AssociationSet>
+    <AssociationSet Name="PRODUCT_ORDERITEM_fk" Association="Self.PRODUCT_ORDERITEM_fk">
+      <End Role="PRODUCT" EntitySet="PRODUCT" />
+      <End Role="ORDERITEM" EntitySet="ORDERITEM" />
+    </AssociationSet>
+    <AssociationSet Name="PRODUCT_TOP10SELLER_fk" Association="Self.PRODUCT_TOP10SELLER_fk">
+      <End Role="PRODUCT" EntitySet="PRODUCT" />
+      <End Role="TOP10SELLER" EntitySet="TOP10SELLER" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

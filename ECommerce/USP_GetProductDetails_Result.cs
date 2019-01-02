@@ -16,7 +16,7 @@ namespace ECommerce
         public int productID { get; set; }
         public string name { get; set; }
         public string description { get; set; }
-        public double price { get; set; }
+        public decimal price { get; set; }
         public string imageURL { get; set; }
         public string keyword { get; set; }
     }

@@ -1,14 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="ProductModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="CATEGORY">
-    <Key>
-      <PropertyRef Name="keyword" />
-      <PropertyRef Name="productID" />
-    </Key>
-    <Property Name="keyword" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="productID" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="PRODUCT" Relationship="Self.PRODUCT_CATEGORY_fk" FromRole="CATEGORY" ToRole="PRODUCT" />
-  </EntityType>
   <EntityType Name="IMGURL">
     <Key>
       <PropertyRef Name="imageURL" />
@@ -17,6 +8,42 @@
     <Property Name="productID" Type="Int32" Nullable="false" />
     <NavigationProperty Name="PRODUCT" Relationship="Self.PRODUCT_IMAGEURL_fk" FromRole="IMGURL" ToRole="PRODUCT" />
   </EntityType>
+  <EntityType Name="KEYWORD">
+    <Key>
+      <PropertyRef Name="keyword1" />
+    </Key>
+    <Property Name="keyword1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="PRODUCTs" Relationship="Self.CATEGORY" FromRole="KEYWORDS" ToRole="PRODUCT" />
+  </EntityType>
+  <EntityType Name="ORDER">
+    <Key>
+      <PropertyRef Name="orderID" />
+    </Key>
+    <Property Name="orderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="payStatus" Type="Boolean" Nullable="false" />
+    <Property Name="orderTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fistname" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="lastname" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="street" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="city" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="state" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="postcode" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="phoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="ORDERITEMs" Relationship="Self.ORDER_ORDERITEM_fk" FromRole="ORDER" ToRole="ORDERITEM" />
+  </EntityType>
+  <EntityType Name="ORDERITEM">
+    <Key>
+      <PropertyRef Name="productID" />
+      <PropertyRef Name="orderID" />
+    </Key>
+    <Property Name="productID" Type="Int32" Nullable="false" />
+    <Property Name="orderID" Type="Int32" Nullable="false" />
+    <Property Name="quantity" Type="Int32" Nullable="false" />
+    <Property Name="price" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <NavigationProperty Name="ORDER" Relationship="Self.ORDER_ORDERITEM_fk" FromRole="ORDERITEM" ToRole="ORDER" />
+    <NavigationProperty Name="PRODUCT" Relationship="Self.PRODUCT_ORDERITEM_fk" FromRole="ORDERITEM" ToRole="PRODUCT" />
+  </EntityType>
   <EntityType Name="PRODUCT">
     <Key>
       <PropertyRef Name="productID" />
@@ -24,22 +51,20 @@
     <Property Name="productID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="price" Type="Double" Nullable="false" />
-    <NavigationProperty Name="CATEGORies" Relationship="Self.PRODUCT_CATEGORY_fk" FromRole="PRODUCT" ToRole="CATEGORY" />
+    <Property Name="price" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
     <NavigationProperty Name="IMGURLs" Relationship="Self.PRODUCT_IMAGEURL_fk" FromRole="PRODUCT" ToRole="IMGURL" />
+    <NavigationProperty Name="ORDERITEMs" Relationship="Self.PRODUCT_ORDERITEM_fk" FromRole="PRODUCT" ToRole="ORDERITEM" />
+    <NavigationProperty Name="TOP10SELLER" Relationship="Self.PRODUCT_TOP10SELLER_fk" FromRole="PRODUCT" ToRole="TOP10SELLER" />
+    <NavigationProperty Name="KEYWORDS" Relationship="Self.CATEGORY" FromRole="PRODUCT" ToRole="KEYWORDS" />
   </EntityType>
-  <Association Name="PRODUCT_CATEGORY_fk">
-    <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
-    <End Role="CATEGORY" Type="Self.CATEGORY" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="PRODUCT">
-        <PropertyRef Name="productID" />
-      </Principal>
-      <Dependent Role="CATEGORY">
-        <PropertyRef Name="productID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
+  <EntityType Name="TOP10SELLER">
+    <Key>
+      <PropertyRef Name="productID" />
+    </Key>
+    <Property Name="productID" Type="Int32" Nullable="false" />
+    <Property Name="sales" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="PRODUCT" Relationship="Self.PRODUCT_TOP10SELLER_fk" FromRole="TOP10SELLER" ToRole="PRODUCT" />
+  </EntityType>
   <Association Name="PRODUCT_IMAGEURL_fk">
     <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
     <End Role="IMGURL" Type="Self.IMGURL" Multiplicity="*" />
@@ -52,17 +77,72 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="ORDER_ORDERITEM_fk">
+    <End Role="ORDER" Type="Self.ORDER" Multiplicity="1" />
+    <End Role="ORDERITEM" Type="Self.ORDERITEM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ORDER">
+        <PropertyRef Name="orderID" />
+      </Principal>
+      <Dependent Role="ORDERITEM">
+        <PropertyRef Name="orderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PRODUCT_ORDERITEM_fk">
+    <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
+    <End Role="ORDERITEM" Type="Self.ORDERITEM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCT">
+        <PropertyRef Name="productID" />
+      </Principal>
+      <Dependent Role="ORDERITEM">
+        <PropertyRef Name="productID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PRODUCT_TOP10SELLER_fk">
+    <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="1" />
+    <End Role="TOP10SELLER" Type="Self.TOP10SELLER" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="PRODUCT">
+        <PropertyRef Name="productID" />
+      </Principal>
+      <Dependent Role="TOP10SELLER">
+        <PropertyRef Name="productID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CATEGORY">
+    <End Role="KEYWORDS" Type="Self.KEYWORD" Multiplicity="*" />
+    <End Role="PRODUCT" Type="Self.PRODUCT" Multiplicity="*" />
+  </Association>
   <EntityContainer Name="ECommerceEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="CATEGORies" EntityType="Self.CATEGORY" />
     <EntitySet Name="IMGURLs" EntityType="Self.IMGURL" />
+    <EntitySet Name="KEYWORDS" EntityType="Self.KEYWORD" />
+    <EntitySet Name="ORDERs" EntityType="Self.ORDER" />
+    <EntitySet Name="ORDERITEMs" EntityType="Self.ORDERITEM" />
     <EntitySet Name="PRODUCTs" EntityType="Self.PRODUCT" />
-    <AssociationSet Name="PRODUCT_CATEGORY_fk" Association="Self.PRODUCT_CATEGORY_fk">
-      <End Role="PRODUCT" EntitySet="PRODUCTs" />
-      <End Role="CATEGORY" EntitySet="CATEGORies" />
-    </AssociationSet>
+    <EntitySet Name="TOP10SELLER" EntityType="Self.TOP10SELLER" />
     <AssociationSet Name="PRODUCT_IMAGEURL_fk" Association="Self.PRODUCT_IMAGEURL_fk">
       <End Role="PRODUCT" EntitySet="PRODUCTs" />
       <End Role="IMGURL" EntitySet="IMGURLs" />
+    </AssociationSet>
+    <AssociationSet Name="ORDER_ORDERITEM_fk" Association="Self.ORDER_ORDERITEM_fk">
+      <End Role="ORDER" EntitySet="ORDERs" />
+      <End Role="ORDERITEM" EntitySet="ORDERITEMs" />
+    </AssociationSet>
+    <AssociationSet Name="PRODUCT_ORDERITEM_fk" Association="Self.PRODUCT_ORDERITEM_fk">
+      <End Role="PRODUCT" EntitySet="PRODUCTs" />
+      <End Role="ORDERITEM" EntitySet="ORDERITEMs" />
+    </AssociationSet>
+    <AssociationSet Name="PRODUCT_TOP10SELLER_fk" Association="Self.PRODUCT_TOP10SELLER_fk">
+      <End Role="PRODUCT" EntitySet="PRODUCTs" />
+      <End Role="TOP10SELLER" EntitySet="TOP10SELLER" />
+    </AssociationSet>
+    <AssociationSet Name="CATEGORY" Association="Self.CATEGORY">
+      <End Role="KEYWORDS" EntitySet="KEYWORDS" />
+      <End Role="PRODUCT" EntitySet="PRODUCTs" />
     </AssociationSet>
     <FunctionImport Name="USP_GetALLCategory" ReturnType="Collection(String)" />
     <FunctionImport Name="USP_GetProductbyCategory" ReturnType="Collection(ProductModel.USP_GetProductbyCategory_Result)">
@@ -76,7 +156,7 @@
     <Property Type="Int32" Name="productID" Nullable="false" />
     <Property Type="String" Name="name" Nullable="false" MaxLength="100" />
     <Property Type="String" Name="description" Nullable="false" />
-    <Property Type="Double" Name="price" Nullable="false" />
+    <Property Type="Decimal" Name="price" Nullable="false" Precision="18" Scale="0" />
     <Property Type="String" Name="imageURL" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="keyword" Nullable="true" MaxLength="20" />
   </ComplexType>
@@ -84,7 +164,7 @@
     <Property Type="Int32" Name="productID" Nullable="false" />
     <Property Type="String" Name="name" Nullable="false" MaxLength="100" />
     <Property Type="String" Name="description" Nullable="false" />
-    <Property Type="Double" Name="price" Nullable="false" />
+    <Property Type="Decimal" Name="price" Nullable="false" Precision="18" Scale="0" />
     <Property Type="String" Name="imageURL" Nullable="true" MaxLength="50" />
     <Property Type="String" Name="keyword" Nullable="true" MaxLength="20" />
   </ComplexType>
