@@ -1,0 +1,124 @@
+USE ECommerce;
+SET DATEFORMAT dmy;
+GO
+
+INSERT INTO [PRODUCT] ([name], [description], [price]) VALUES(N'Advanced Night Repair Synchronized Recovery Complex II', N'FIGHTS ALL KEY SIGNS OF AGEING. AUSTRALIA''S #1 REPAIR SERUM.', 100.00);
+INSERT INTO [PRODUCT] ([name], [description], [price]) VALUES(N'Advanced Night Repair Eye Supercharged Complex Synchronized Recovery', N'REPAIRS. BRIGHTENS DARK CIRCLES. HYDRATES. PREVENTS.', $105.00);
+INSERT INTO [PRODUCT] ([name], [description], [price]) VALUES(N'Advanced Night Repair Intensive Recovery Ampoules', N'PRECISION DOSE HELPS RENEW VISIBLY STRESSED SKIN.', 168.00);
+INSERT INTO [PRODUCT] ([name], [description], [price]) VALUES(N'Perfectionist Pro Instant Wrinkle Filler with Tri-Polymer Blend', N'IMMEDIATELY HELPS FILL FACIAL LINES AND WRINKLES.', $85.00);
+INSERT INTO [PRODUCT] ([name], [description], [price]) VALUES(N'Advanced Night Repair Recovery Mask-In-Oil', N'HELPS ¡°LOCK IN¡± THE POWER OF ADVANCED NIGHT REPAIR SERUM', 125.00);
+INSERT INTO [PRODUCT] ([name], [description], [price]) VALUES(N'Advanced Night Repair Recovery Mask-In-Oil', N'HELPS ¡°LOCK IN¡± THE POWER OF ADVANCED NIGHT REPAIR SERUM', 125.00);
+INSERT INTO [PRODUCT] ([name], [description], [price]) VALUES(N'Perfectionist [CP+R] Wrinkle Lifting/Firming Serum', N'SIGNIFICANTLY REDUCES THE LOOK OF LINES, WRINKLES.', 110.00);
+INSERT INTO [PRODUCT] ([name], [description], [price]) VALUES(N'Perfectionist Pro Rapid Firm + Lift Treatment with Acetyl Hexapeptide-8', N'SEE A MORE LIFTED AND YOUTHFUL LOOK.', 115.00);
+INSERT INTO [PRODUCT] ([name], [description], [price]) VALUES(N'Advanced Night Repair Concentrated Recovery Eye Mask', N'REJUVENATES THE LOOK AND FEEL OF YOUR EYES.', 60.00);
+INSERT INTO [PRODUCT] ([name], [description], [price]) VALUES(N'Advanced Night Repair Concentrated Recovery PowerFoil Mask', N'INNOVATIVE MASK WITH EXCLUSIVE REPAIR TECHNOLOGY.', 120.00);
+
+INSERT INTO [PRODUCT] ([name], [description], [price]) VALUES(N'Revitalizing Supreme+ Global Anti-Aging Cell Power Creme SPF 15', N'MULTI-ACTION SPF 15 CREME, THE KEY TO YOUNGER-LOOKING SKIN.', 125.00);
+INSERT INTO [PRODUCT] ([name], [description], [price]) VALUES(N'Revitalizing Supreme Light+ Global Anti-Aging Cell Power Creme Oil-Free', N'LIGHTWEIGHT, FAST-FIRMING, MULTI-ACTION CREME. OIL-FREE.', 125.00);
+INSERT INTO [PRODUCT] ([name], [description], [price]) VALUES(N'Revitalizing Supreme + Global Anti-Aging Wake Up Balm', N'INSTANT RADIANCE. ANTI-AGEING. BRIGHTENING.', 98.00);
+INSERT INTO [PRODUCT] ([name], [description], [price]) VALUES(N'Revitalizing Supreme+ Nourishing and Hydrating Dual Phase Treatment Oil', N'SILKY LIGHT, NOURISHING OILS + FIRMING ESSENCE.', 110.00);
+INSERT INTO [PRODUCT] ([name], [description], [price]) VALUES(N'DayWear Advanced Multi-Protection Anti-Oxidant Creme SPF 15', N'HELPS PREVENT AND DIMINISH FIRST SIGNS OF AGEING.', 75.00);
+INSERT INTO [PRODUCT] ([name], [description], [price]) VALUES(N'NightWear Plus Anti-Oxidant Night Detox Cr¨¨me', N'DETOXIFY, SOOTHE, INTENSELY HYDRATE¡ªWHILE YOU SLEEP.', 80.00);
+INSERT INTO [PRODUCT] ([name], [description], [price]) VALUES(N'Resilience Lift Night Lifting/Firming Face and Neck Creme', N'INTENSE NIGHTTIME NOURISHMENT TO LIFT AND FIRM.', 155.00);
+INSERT INTO [PRODUCT] ([name], [description], [price]) VALUES(N'Advanced Time Zone Age Reversing Line/Wrinkle Creme SPF 15', N'REDUCES THE LOOK OF WRINKLES.', 110.00);
+INSERT INTO [PRODUCT] ([name], [description], [price]) VALUES(N'Advanced Time Zone Night Age Reversing Line/Wrinkle Creme', N'INTENSIVE NIGHTTIME CARE FOR A YOUNGER LOOK, FAST.', 120.00);
+INSERT INTO [PRODUCT] ([name], [description], [price]) VALUES(N'Advanced Time Zone Age Reversing Line/Wrinkle Hydrating Gel Oil-Free', N'REDUCES THE LOOK OF WRINKLES. OIL-CONTROL GEL.',  110.00);
+
+
+
+
+
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'0101.jpg', 1001);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'0102.jpg', 1001);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'0103.jpg', 1001);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'0104.jpg', 1001);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'0201.jpg', 1002);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'0301.jpg', 1003);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'0302.jpg', 1003);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'0401.jpg', 1004);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'0501.jpg', 1005);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'0601.jpg', 1006);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'0701.jpg', 1007);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'0801.jpg', 1008);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'0802.jpg', 1008);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'0901.jpg', 1009);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'0902.jpg', 1009);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'1001.jpg', 1010);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'1002.jpg', 1010);
+
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'1101.jpg', 1011);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'1201.jpg', 1012);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'1301.jpg', 1013);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'1401.jpg', 1014);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'1501.jpg', 1015);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'1601.jpg', 1016);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'1701.jpg', 1017);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'1801.jpg', 1018);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'1901.jpg', 1019);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'2001.jpg', 1020);
+
+
+INSERT INTO [KEYWORDS] ([keyword]) VALUES (N'Anti Aging');
+INSERT INTO [KEYWORDS] ([keyword]) VALUES (N'Anti Wrinkle');
+INSERT INTO [KEYWORDS] ([keyword]) VALUES (N'Acne');
+INSERT INTO [KEYWORDS] ([keyword]) VALUES (N'Hydration');
+INSERT INTO [KEYWORDS] ([keyword]) VALUES (N'Spring');
+INSERT INTO [KEYWORDS] ([keyword]) VALUES (N'Summer');
+INSERT INTO [KEYWORDS] ([keyword]) VALUES (N'Autumn');
+INSERT INTO [KEYWORDS] ([keyword]) VALUES (N'Winter');
+INSERT INTO [KEYWORDS] ([keyword]) VALUES (N'Eye Care');
+INSERT INTO [KEYWORDS] ([keyword]) VALUES (N'Moisturiser');
+INSERT INTO [KEYWORDS] ([keyword]) VALUES (N'Treatment Lotion');
+INSERT INTO [KEYWORDS] ([keyword]) VALUES (N'Mask');
+
+
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Anti Aging', 1001);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Anti Wrinkle', 1001);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Spring', 1001);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Eye Care', 1001);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Anti Aging', 1002);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Summer', 1002);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Eye Care', 1002);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Anti Wrinkle', 1003);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Autumn', 1003);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Moisturiser', 1003);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Acne', 1004);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Winter', 1004);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Hydration', 1005);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Treatment Lotion', 1005);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Spring', 1006);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Hydration', 1007);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Winter', 1007);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Acne', 1008);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Spring', 1008);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Eye Care', 1008);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Anti Aging', 1009);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Mask', 1009);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Anti Aging', 1010);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Winter', 1010);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Mask', 1010);
+
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Anti Wrinkle', 1011);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Summer', 1011);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Moisturiser', 1011);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Spring', 1012);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Acne', 1013);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Autumn', 1013);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Moisturiser', 1013);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Spring', 1014);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Treatment Lotion', 1014);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Hydration', 1015);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Summer', 1015);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Moisturiser', 1015);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Treatment Lotion', 1016);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Acne', 1017);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Winter', 1017);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Anti Aging', 1018);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Summer', 1018);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Mask', 1018);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Hydration', 1019);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Autumn', 1019);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Eye Care', 1019);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Anti Wrinkle', 1020);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Autumn', 1020);
+INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Treatment Lotion', 1020);
