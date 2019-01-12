@@ -21,8 +21,8 @@ const appRoutes: Routes = [
 
 @NgModule({
     imports: [BrowserModule, FormsModule, HttpModule, RouterModule.forRoot(appRoutes, { useHash: true })],
-  declarations: [ AppComponent, ProductListComponent, ProductComponent ],
-  bootstrap: [AppComponent],
+    declarations: [ AppComponent, ProductListComponent, ProductComponent ],
+    bootstrap: [AppComponent],
     providers: [ProductService, CookieService, WINDOW_PROVIDERS]
 })
 export class AppModule { }

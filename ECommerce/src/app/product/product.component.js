@@ -22,6 +22,8 @@ var ProductComponent = /** @class */ (function () {
         this.productList = [];
         this.quantity = 1;
         this.cookieValue = 'unknown';
+        //Data slide attribute control
+        this.counter = 1;
     }
     ProductComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -29,8 +31,11 @@ var ProductComponent = /** @class */ (function () {
         this.prod_ID = this._activatedRoute.snapshot.params['productId'];
         //Get product details from database
         this._productService.getProductById(this.prod_ID).subscribe(function (productDetails) {
-            _this.products = productDetails;
-            _this.productFilter();
+            _this.products = productDetails; //Get raw data from database
+            _this.productFilter(); //Get productList by filter
+            _this.imgSource = _this.productList[0].imageURL; //Get image array
+            _this.imgRest = _this.productList[0].imageURL.splice(0); //Clone image array
+            _this.imgRest.shift(); //Removing the first element
         }, function (error) {
             _this.statusMsg = "Service Problem!";
         });
@@ -104,10 +109,15 @@ var ProductComponent = /** @class */ (function () {
             return;
         }
     };
+    ProductComponent.prototype.dataSlideIncrease = function () {
+        this.counter = this.counter + 1;
+        this.dataSlide = 'data-slide-to="' + this.counter + '"';
+    };
     ProductComponent = __decorate([
         core_1.Component({
             selector: 'product-detail',
-            templateUrl: 'app/product/product.component.html'
+            templateUrl: 'app/product/product.component.html',
+            styles: ['#myCarousel{with: 300px;}']
         }),
         __metadata("design:paramtypes", [product_service_1.ProductService, router_1.ActivatedRoute, core_2.CookieService])
     ], ProductComponent);

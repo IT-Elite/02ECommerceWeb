@@ -6,7 +6,8 @@ import { CookieService } from "angular2-cookie/core";
 
 @Component({
     selector: 'product-detail',
-    templateUrl: 'app/product/product.component.html'
+    templateUrl: 'app/product/product.component.html',
+    styles: ['#myCarousel{with: 300px;}']
 })
 
 export class ProductComponent implements OnInit {
@@ -16,6 +17,8 @@ export class ProductComponent implements OnInit {
     quantity: number = 1;
     prod_ID: string;
     cookieValue: string = 'unknown';
+    imgSource: string[];        //Oringal imageURL array
+    imgRest: string[];      //ImageURL array excluding the first element
 
     constructor(private _productService: ProductService, private _activatedRoute: ActivatedRoute, private _cookieService: CookieService) { }
 
@@ -25,8 +28,11 @@ export class ProductComponent implements OnInit {
 
         //Get product details from database
         this._productService.getProductById(this.prod_ID).subscribe((productDetails) => {
-            this.products = productDetails;
-            this.productFilter();
+            this.products = productDetails;     //Get raw data from database
+            this.productFilter();   //Get productList by filter
+            this.imgSource = this.productList[0].imageURL;      //Get image array
+            this.imgRest = this.productList[0].imageURL.splice(0);      //Clone image array
+            this.imgRest.shift();        //Removing the first element
         }, (error) => {
                 this.statusMsg = "Service Problem!";
             })
@@ -101,5 +107,12 @@ export class ProductComponent implements OnInit {
         } else {
             return;
         }
+    }
+
+    //Data slide attribute control
+    counter: number = 1;
+    dataSlideIncrease() {
+        this.counter = this.counter + 1;
+        this.dataSlide = 'data-slide-to="' + this.counter + '"';
     }
 }
