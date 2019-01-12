@@ -1,0 +1,50 @@
+﻿
+<div>
+    <table class="table table-striped table-bordered">
+        <tbody *ngIf="productList">
+            <ng-container *ngFor="let product of productList;">
+                <tr>
+                    <th>Model Code</th>
+                    <td>{{product.productID}}</td>
+                </tr>
+
+                <tr>
+                    <th>Name</th>
+                    <td>{{product.name}}</td>
+                </tr>
+
+                <tr>
+                    <th>Description</th>
+                    <td>{{product.description}}</td>
+                </tr>
+
+                <tr>
+                    <th>Price</th>
+                    <td>{{product.price | currency:'AUD':true:'1.2-2'}}</td>
+                </tr>
+
+                <tr>
+                    <th>Keywords</th>
+                    <td>{{product.keyword}}</td>
+                </tr>
+
+                <tr>
+                    <th>ImageURLs</th>
+                    <td>{{product.imageURL}}</td>
+                </tr>
+
+            </ng-container>
+            <tr *ngIf="!productList">
+                <td colspan="6">No products to display!</td>
+            </tr>
+        </tbody>
+    </table>
+    <form id="item-add">
+        <button class="btn btn-default" (click)="quantityMinus()">-</button>
+        <input [(ngModel)]="quantity" name="quantity"/>
+        <button class="btn btn-default" (click)="quantityPlus()">+</button>
+        <button class="btn btn-danger" (click)="generateCookie()">Add to cart</button>
+    </form>
+
+    <p>Cookie Testing: {{cookieValue}}</p>
+</div>

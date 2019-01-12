@@ -1,0 +1,16 @@
+﻿<div class="container">
+    <div class="row">
+        <ng-container *ngFor="let product of productList;">
+            <div class="col-sm-6 text-center" *ngIf="productList">
+                <img src="{{product.imageURL}}" class="img-rounded" width="300" height="412" alt="{{product.name}}">
+                <h5>{{product.name}}</h5>
+                <h6>{{product.description}}</h6>
+                <div>{{product.price | currency:'AUD':true:'1.2-2'}}</div>
+                <button class="btn-default btn-lg" [routerLink]="['/product',product.productID]">SHOP NOW</button>
+            </div>
+        </ng-container>
+        <div *ngIf="!productList">
+            <p class="jumbotron">No products to display!</p>
+        </div>
+    </div>
+</div>

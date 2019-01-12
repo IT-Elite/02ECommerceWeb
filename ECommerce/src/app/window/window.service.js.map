@@ -1,0 +1,1 @@
+{"version":3,"file":"window.service.js","sourceRoot":"","sources":["window.service.ts"],"names":[],"mappings":";;AAAA,sCAAgE;AAEnD,QAAA,MAAM,GAAG,IAAI,qBAAc,CAAS,QAAQ,CAAC,CAAC;AAE3D,IAAM,cAAc,GAAoB;IACpC,OAAO,EAAE,cAAM;IACf,UAAU,EAAE,cAAM,OAAA,MAAM,EAAN,CAAM;CAC3B,CAAC;AAEW,QAAA,gBAAgB,GAAG;IAC5B,cAAc;CACjB,CAAA"}
