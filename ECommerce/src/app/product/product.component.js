@@ -22,8 +22,6 @@ var ProductComponent = /** @class */ (function () {
         this.productList = [];
         this.quantity = 1;
         this.cookieValue = 'unknown';
-        //Data slide attribute control
-        this.counter = 1;
     }
     ProductComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -109,15 +107,10 @@ var ProductComponent = /** @class */ (function () {
             return;
         }
     };
-    ProductComponent.prototype.dataSlideIncrease = function () {
-        this.counter = this.counter + 1;
-        this.dataSlide = 'data-slide-to="' + this.counter + '"';
-    };
     ProductComponent = __decorate([
         core_1.Component({
             selector: 'product-detail',
             templateUrl: 'app/product/product.component.html',
-            styles: ['#myCarousel{with: 300px;}']
         }),
         __metadata("design:paramtypes", [product_service_1.ProductService, router_1.ActivatedRoute, core_2.CookieService])
     ], ProductComponent);

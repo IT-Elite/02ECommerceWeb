@@ -7,7 +7,6 @@ import { CookieService } from "angular2-cookie/core";
 @Component({
     selector: 'product-detail',
     templateUrl: 'app/product/product.component.html',
-    styles: ['#myCarousel{with: 300px;}']
 })
 
 export class ProductComponent implements OnInit {
@@ -107,12 +106,5 @@ export class ProductComponent implements OnInit {
         } else {
             return;
         }
-    }
-
-    //Data slide attribute control
-    counter: number = 1;
-    dataSlideIncrease() {
-        this.counter = this.counter + 1;
-        this.dataSlide = 'data-slide-to="' + this.counter + '"';
     }
 }
