@@ -17,6 +17,7 @@ export class ProductComponent implements OnInit {
     prod_ID: string;
     cookieValue: string = 'unknown';
     imgSource: string[];        //Oringal imageURL array
+    imgSource_0: string;
     imgRest: string[];      //ImageURL array excluding the first element
 
     constructor(private _productService: ProductService, private _activatedRoute: ActivatedRoute, private _cookieService: CookieService) { }
@@ -30,6 +31,7 @@ export class ProductComponent implements OnInit {
             this.products = productDetails;     //Get raw data from database
             this.productFilter();   //Get productList by filter
             this.imgSource = this.productList[0].imageURL;      //Get image array
+            this.imgSource_0 = this.imgSource[0].toString();        //Get first image
             this.imgRest = this.productList[0].imageURL.splice(0);      //Clone image array
             this.imgRest.shift();        //Removing the first element
         }, (error) => {
@@ -90,21 +92,20 @@ export class ProductComponent implements OnInit {
 
     //Cookie generator
     generateCookie() {
-        let cookieNumber = 1;
         let date = new Date();
         date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));      //Set cookie expeirs in 30 days
+        let quantityValue = this.quantity;     //Set quantityValue to quantity
 
-        if (this._cookieService.get('user_login') == undefined) {
-            console.log(this._cookieService.get('cart_cookie_' + cookieNumber));
-            while (this._cookieService.get('cart_cookie_' + cookieNumber) != undefined) {
-                cookieNumber += 1;
+        if (this._cookieService.get('user_login') == undefined) {       //Check if login token is on
+            if (this._cookieService.get(this.prod_ID) != undefined) {
+                quantityValue += parseInt(this._cookieService.get(this.prod_ID));
             }
-            this._cookieService.put('cart_cookie_' + cookieNumber, 'productID:' + this.prod_ID + ';' + 'quantity:' + this.quantity, { expires: date });
+            this._cookieService.put(this.prod_ID, quantityValue.toString(), { expires: date });
 
             //Display cookie for testing
-            this.cookieValue = this._cookieService.get('cart_cookie_' + cookieNumber);
+            this.cookieValue = this._cookieService.get(this.prod_ID);
         } else {
-            return;
+            //Code for login user
         }
     }
 }

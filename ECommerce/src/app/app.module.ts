@@ -8,20 +8,23 @@ import { AppComponent } from './app.component';
 import { ProductListComponent } from './product/productList.component';
 import { ProductService } from './product/product.service';
 import { ProductComponent } from './product/product.component';
+import { CartComponent } from './cart/cart.component';
+
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { WINDOW_PROVIDERS } from './window/window.service';
 
 
 const appRoutes: Routes = [
     { path: 'product', component: ProductListComponent },
+    { path: 'product/cart', component: CartComponent },
     { path: 'product/:productId', component: ProductComponent },
-    { path: 'product/catalog/:category', component: ProductListComponent},
+    { path: 'product/catalog/:category', component: ProductListComponent },
     { path: '**', component:ProductListComponent}
 ]
 
 @NgModule({
     imports: [BrowserModule, FormsModule, HttpModule, RouterModule.forRoot(appRoutes, { useHash: true })],
-    declarations: [ AppComponent, ProductListComponent, ProductComponent ],
+    declarations: [ AppComponent, ProductListComponent, ProductComponent, CartComponent ],
     bootstrap: [AppComponent],
     providers: [ProductService, CookieService, WINDOW_PROVIDERS]
 })

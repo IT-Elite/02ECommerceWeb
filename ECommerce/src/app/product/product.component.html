@@ -1,4 +1,4 @@
-﻿<div id="myCarousel" class="carousel slide" data-ride="carousel">
+﻿<div *ngIf="productList" id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -10,7 +10,7 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
         <div class="item active">
-            <img src="{{imgSource[0]}}" alt="pic0" width="300" height="412">
+            <img src="{{imgSource_0}}" alt="pic0" width="300" height="412">
         </div>
 
         <ng-container *ngFor="let image of imgRest;">

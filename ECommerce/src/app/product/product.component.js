@@ -32,6 +32,7 @@ var ProductComponent = /** @class */ (function () {
             _this.products = productDetails; //Get raw data from database
             _this.productFilter(); //Get productList by filter
             _this.imgSource = _this.productList[0].imageURL; //Get image array
+            _this.imgSource_0 = _this.imgSource[0].toString(); //Get first image
             _this.imgRest = _this.productList[0].imageURL.splice(0); //Clone image array
             _this.imgRest.shift(); //Removing the first element
         }, function (error) {
@@ -91,20 +92,19 @@ var ProductComponent = /** @class */ (function () {
     };
     //Cookie generator
     ProductComponent.prototype.generateCookie = function () {
-        var cookieNumber = 1;
         var date = new Date();
         date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000)); //Set cookie expeirs in 30 days
-        if (this._cookieService.get('user_login') == undefined) {
-            console.log(this._cookieService.get('cart_cookie_' + cookieNumber));
-            while (this._cookieService.get('cart_cookie_' + cookieNumber) != undefined) {
-                cookieNumber += 1;
+        var quantityValue = this.quantity; //Set quantityValue to quantity
+        if (this._cookieService.get('user_login') == undefined) { //Check if login token is on
+            if (this._cookieService.get(this.prod_ID) != undefined) {
+                quantityValue += parseInt(this._cookieService.get(this.prod_ID));
             }
-            this._cookieService.put('cart_cookie_' + cookieNumber, 'productID:' + this.prod_ID + ';' + 'quantity:' + this.quantity, { expires: date });
+            this._cookieService.put(this.prod_ID, quantityValue.toString(), { expires: date });
             //Display cookie for testing
-            this.cookieValue = this._cookieService.get('cart_cookie_' + cookieNumber);
+            this.cookieValue = this._cookieService.get(this.prod_ID);
         }
         else {
-            return;
+            //Code for login user
         }
     };
     ProductComponent = __decorate([
