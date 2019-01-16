@@ -1,0 +1,81 @@
+﻿@model ECommerce.Models.Order
+
+@{
+    ViewBag.Title = "Address";
+}
+
+<h2>Delivery Address</h2>
+
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveryAddress.OrderID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeliveryAddress.OrderID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveryAddress.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeliveryAddress.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveryAddress.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeliveryAddress.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveryAddress.Street)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeliveryAddress.Street)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveryAddress.City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeliveryAddress.City)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveryAddress.State)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeliveryAddress.State)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveryAddress.PostCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeliveryAddress.PostCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveryAddress.PhoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeliveryAddress.PhoneNumber)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.OrderID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

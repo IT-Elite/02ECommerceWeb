@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="602ac6ec5d554da5b7f37cb1057d3b57" Name="Diagram1">
+        <EntityTypeShape EntityType="ECommerceModel.DELIVERYADDRESS" Width="1.5" PointX="8.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceModel.IMGURL" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceModel.KEYWORD" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceModel.ORDER" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceModel.ORDERITEM" Width="1.5" PointX="8.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceModel.PRODUCT" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ECommerceModel.TOP10SELLER" Width="1.5" PointX="5.25" PointY="9" IsExpanded="true" />
+        <AssociationConnector Association="ECommerceModel.ORDER_DELIVERYADDRESS_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="ECommerceModel.PRODUCT_IMAGEURL_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="ECommerceModel.ORDER_ORDERITEM_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="ECommerceModel.PRODUCT_ORDERITEM_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="ECommerceModel.PRODUCT_TOP10SELLER_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="ECommerceModel.CATEGORY" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

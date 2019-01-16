@@ -21,9 +21,6 @@ namespace ECommerce.Models
 
         public DbSet<Product> Products { get; set; }
 
-      
-
-    }
-
-      
-    }
+        public System.Data.Entity.DbSet<ECommerce.Models.Order> Orders { get; set; }
+    }   
+}

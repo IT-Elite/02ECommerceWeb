@@ -122,3 +122,33 @@ INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Eye Care', 1019);
 INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Anti Wrinkle', 1020);
 INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Autumn', 1020);
 INSERT INTO [CATEGORY] ([keyword], [productID]) VALUES (N'Treatment Lotion', 1020);
+
+
+INSERT INTO [ORDER] ([email],[orderTime],[payStatus]) VALUES (N'123@163.com',N'17-12-2018 10:06:08',1);
+INSERT INTO [ORDER] ([email],[orderTime],[payStatus]) VALUES (N'234@163.com',N'18-12-2018 11:05:08',1);
+INSERT INTO [ORDER] ([email],[orderTime],[payStatus]) VALUES (N'345@163.com',N'19-11-2018 12:06:08',1);
+INSERT INTO [ORDER] ([email],[orderTime],[payStatus]) VALUES (N'456@163.com',N'15-11-2018 18:59:59',0);
+INSERT INTO [ORDER] ([email],[orderTime],[payStatus]) VALUES (N'567@163.com',N'23-09-2018 22:01:59',1);
+
+
+INSERT INTO [DELIVERYADDRESS] ([orderID],[firstName],[lastName],[street],[city],[state],[postCode],[phoneNumber]) VALUES (1001,N'Ryan',N'Wang',N'Gaza Street',N'Sydney',N'NSW',N'2114',N'0424123456');
+INSERT INTO [DELIVERYADDRESS] ([orderID],[firstName],[lastName],[street],[city],[state],[postCode],[phoneNumber]) VALUES (1002,N'Kevin',N'Li',N'Oxford Street',N'Sydney',N'NSW',N'2005',N'0406123456');
+INSERT INTO [DELIVERYADDRESS] ([orderID],[firstName],[lastName],[street],[city],[state],[postCode],[phoneNumber]) VALUES (1003,N'Jacob',N'Tian',N'Kings Street',N'Sydney',N'NSW',N'2001',N'0404012345');
+INSERT INTO [DELIVERYADDRESS] ([orderID],[firstName],[lastName],[street],[city],[state],[postCode],[phoneNumber]) VALUES (1004,N'Tom',N'Sun',N'Stirlin Street',N'Melbourne',N'VIC',N'1004',N'0421345567');
+INSERT INTO [DELIVERYADDRESS] ([orderID],[firstName],[lastName],[street],[city],[state],[postCode],[phoneNumber]) VALUES (1005,N'Michael',N'Zhao',N'Windsor Street',N'NewCastle',N'NSW',N'2231',N'0405567890');
+
+
+INSERT INTO [ORDERITEM] ([orderID],[productID],[quantity],[price]) VALUES (1001,1001,1,100.00);
+INSERT INTO [ORDERITEM] ([orderID],[productID],[quantity],[price]) VALUES (1001,1002,2,105.00);
+INSERT INTO [ORDERITEM] ([orderID],[productID],[quantity],[price]) VALUES (1002,1003,1,168.00);
+INSERT INTO [ORDERITEM] ([orderID],[productID],[quantity],[price]) VALUES (1002,1004,2,85.00);
+INSERT INTO [ORDERITEM] ([orderID],[productID],[quantity],[price]) VALUES (1002,1005,1,125.00);
+INSERT INTO [ORDERITEM] ([orderID],[productID],[quantity],[price]) VALUES (1002,1006,1,125.00);
+INSERT INTO [ORDERITEM] ([orderID],[productID],[quantity],[price]) VALUES (1003,1011,1,125.00);
+INSERT INTO [ORDERITEM] ([orderID],[productID],[quantity],[price]) VALUES (1003,1012,3,125.00);
+INSERT INTO [ORDERITEM] ([orderID],[productID],[quantity],[price]) VALUES (1004,1006,2,125.00);
+INSERT INTO [ORDERITEM] ([orderID],[productID],[quantity],[price]) VALUES (1004,1019,1,120.00);
+INSERT INTO [ORDERITEM] ([orderID],[productID],[quantity],[price]) VALUES (1004,1020,1,110.00);
+INSERT INTO [ORDERITEM] ([orderID],[productID],[quantity],[price]) VALUES (1005,1014,2,100.00);
+INSERT INTO [ORDERITEM] ([orderID],[productID],[quantity],[price]) VALUES (1005,1016,3,70.00);
+INSERT INTO [ORDERITEM] ([orderID],[productID],[quantity],[price]) VALUES (1005,1018,2,100.00);

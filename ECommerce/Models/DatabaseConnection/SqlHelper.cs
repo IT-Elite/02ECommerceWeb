@@ -204,5 +204,25 @@ namespace ECommerce.Models
 
             return rowsAffected;
         }
+
+        public int ExecuteScalar(string SPName, SqlParameter[] paramters)
+        {
+            SqlConnection conn = new SqlConnection(connString);
+
+            SqlCommand cmd = new SqlCommand(SPName, conn);
+
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            FillParameters(cmd, paramters);
+
+            conn.Open();
+
+            int result = Convert.ToInt32(cmd.ExecuteScalar());
+
+            //Close Connection
+            conn.Close();
+
+            return result;
+        }
     }
 }

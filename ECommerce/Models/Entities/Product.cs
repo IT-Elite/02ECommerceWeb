@@ -22,7 +22,7 @@ namespace ECommerce.Models
         public Product (int? id) : base()
         {
             SqlHelper dal = new SqlHelper();
-            String sql = "Select * from Product where productID="+id;
+            String sql = "Select * from PRODUCT where productID="+id;
             DataTable dt = dal.ExecuteSql(sql);
             if (dt != null && dt.Rows.Count > 0)
             {
