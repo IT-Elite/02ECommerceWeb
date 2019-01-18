@@ -382,6 +382,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="src\app\cart\cart.component.html" />
+    <Content Include="src\app\navigation\nav.component.html" />
     <Content Include="src\app\product\product.component.html" />
     <Content Include="src\app\product\productList.component.html" />
     <Content Include="src\favicon.ico" />
@@ -438,6 +439,7 @@
     <TypeScriptCompile Include="src\app\app.component.ts" />
     <TypeScriptCompile Include="src\app\app.module.ts" />
     <TypeScriptCompile Include="src\app\cart\cart.component.ts" />
+    <TypeScriptCompile Include="src\app\navigation\nav.component.ts" />
     <TypeScriptCompile Include="src\app\product\product.component.ts" />
     <TypeScriptCompile Include="src\app\product\product.service.ts" />
     <TypeScriptCompile Include="src\app\product\product.ts" />

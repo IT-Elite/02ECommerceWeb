@@ -1,0 +1,52 @@
+﻿<nav class="navbar navbar-dark bg-dark navbar-expand-lg navbar-inverse navbar-fixed-top">
+    <a class="navbar-brand" href="http://{{host}}">Application name</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="http://{{host}}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{host}}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{host}}">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Product
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="http://{{host}}/src/#/">All Products</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="http://{{host}}/src/#/product/catalog/Spring" (click)="refresh()">Spring</a>
+                    <a class="dropdown-item" href="http://{{host}}/src/#/product/catalog/Summer" (click)="refresh()">Summer</a>
+                    <a class="dropdown-item" href="http://{{host}}/src/#/product/catalog/Autumn" (click)="refresh()">Autumn</a>
+                    <a class="dropdown-item" href="http://{{host}}/src/#/product/catalog/Winter" (click)="refresh()">Winter</a>
+
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="http://{{host}}/src/#/product/catalog/Eye Care" (click)="refresh()">Eye Care</a>
+                    <a class="dropdown-item" href="http://{{host}}/src/#/product/catalog/Acne" (click)="refresh()">Acne</a>
+                    <a class="dropdown-item" href="http://{{host}}/src/#/product/catalog/Hydration" (click)="refresh()">Hydration</a>
+                    <a class="dropdown-item" href="http://{{host}}/src/#/product/catalog/Eye Care" (click)="refresh()">Eye Care</a>
+
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="http://{{host}}/src/#/product/catalog/Eye Care" (click)="refresh()">Anti Wrinkle</a>
+                    <a class="dropdown-item" href="http://{{host}}/src/#/product/catalog/Anti Aging" (click)="refresh()">Anti Aging</a>
+                    <a class="dropdown-item" href="http://{{host}}/src/#/product/catalog/Moisturiser" (click)="refresh()">Moisturiser</a>
+                    <a class="dropdown-item" href="http://{{host}}/src/#/product/catalog/Treatment Lotion" (click)="refresh()">Treatment Lotion</a>
+                    <a class="dropdown-item" href="http://{{host}}/src/#/product/catalog/Mask" (click)="refresh()">Mask</a>
+
+                </div>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        <a href="http://{{host}}/src/#/product/cart"><h1>🛒</h1></a>
+    </div>
+</nav>

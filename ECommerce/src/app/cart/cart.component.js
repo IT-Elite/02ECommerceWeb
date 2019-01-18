@@ -32,32 +32,62 @@ var CartComponent = /** @class */ (function () {
             for (var cookie in cookieColl) {
                 this.productIDColl.push(cookie);
                 //console.log("product IDs: " + this.productIDColl);
-                this.quantityColl.push(this._cookieService.get(cookie));
-                //console.log("quantites: " + this.quantityColl);
             }
-            var _loop_1 = function (i) {
-                this_1.prod_ID = this_1.productIDColl[i];
+            var _loop_1 = function (loop_count) {
+                this_1.prod_ID = this_1.productIDColl[loop_count];
                 this_1._productService.getProductById(this_1.prod_ID).subscribe(function (productDetails) {
                     _this.products = productDetails; //Get raw data from database
                     _this.productFilter(); //Get productList by filter
-                    setTimeout(function () { _this.totalPrice = _this.totalPrice + _this.priceColl[i] * parseInt(_this.quantityColl[i]); }, 200);
+                    console.log(loop_count);
+                    //console.log(this.priceColl[i]);
+                    //Calculate total price, but have to wait until finishing data filling
+                    setTimeout(function () { _this.totalPrice = _this.totalPrice + _this.priceColl[loop_count] * parseInt(_this.quantityColl[loop_count]); }, 3000);
                 }, function (error) {
                     _this.statusMsg = "Service Problem!";
                 });
             };
             var this_1 = this;
             //Get product details from database
-            for (var i = 0; i < this.productIDColl.length; i++) {
-                _loop_1(i);
+            for (var loop_count = 0; loop_count < this.productIDColl.length; loop_count++) {
+                _loop_1(loop_count);
             }
         }
         else {
             //Code for login user
         }
     };
+    //Id tracker
+    CartComponent.prototype.trackById = function (index, product) {
+        return product.productID;
+    };
     //Quantity update
-    CartComponent.prototype.quantityUpdate = function (e) {
-        console.log(e);
+    CartComponent.prototype.onQuantityChange = function (val) {
+        var date = new Date();
+        date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000)); //Set cookie expeirs in 30 days
+        //console.log(val.name)
+        //console.log(val.value)
+        this._cookieService.put(val.name, val.value, { expires: date }); //update cookie
+        //Reset all data storages
+        this.productList = [];
+        this.productIDColl = [];
+        this.priceColl = [];
+        this.quantityColl = [];
+        this.totalPrice = 0;
+        //Refresh page
+        this.ngOnInit();
+    };
+    //Remove item
+    CartComponent.prototype.removeItem = function (val) {
+        console.log(val.name);
+        this._cookieService.remove(val.name);
+        //Reset all data storages
+        this.productList = [];
+        this.productIDColl = [];
+        this.priceColl = [];
+        this.quantityColl = [];
+        this.totalPrice = 0;
+        //Refresh page
+        this.ngOnInit();
     };
     CartComponent.prototype.productFilter = function () {
         console.log("We are in filter.");
@@ -74,7 +104,8 @@ var CartComponent = /** @class */ (function () {
                 prod.name = product.name;
                 prod.description = product.description;
                 prod.price = product.price;
-                this.priceColl.push(prod.price); //Store the price for later using
+                this.priceColl.push(prod.price); //Store the price for later use
+                this.quantityColl.push(this._cookieService.get(prod.productID)); //Store the quantity for later use
                 prod.keyword.push(product.keyword);
                 prod.imageURL.push(product.imageURL);
             }
@@ -83,7 +114,8 @@ var CartComponent = /** @class */ (function () {
                 prod.name = product.name;
                 prod.description = product.description;
                 prod.price = product.price;
-                this.priceColl.push(prod.price); //Store the price for later using
+                this.priceColl.push(prod.price); //Store the price for later use
+                this.quantityColl.push(this._cookieService.get(prod.productID)); //Store the quantity for later use
                 prod.keyword.push(product.keyword);
                 prod.imageURL.push(product.imageURL);
             }
@@ -98,6 +130,12 @@ var CartComponent = /** @class */ (function () {
             }
         }
         this.productList.push(prod);
+    };
+    //Testing
+    CartComponent.prototype.testing = function () {
+        console.log("Timing testing...");
+        console.log(this.productList);
+        console.log(this.priceColl);
     };
     CartComponent = __decorate([
         core_1.Component({
