@@ -2,14 +2,14 @@
 import { IProduct, Product } from "../product/product";
 import { ProductService } from "../product/product.service";
 import { CookieService } from "angular2-cookie/core";
-
+import { Event } from "@angular/router";
 
 @Component({
     selector: 'shopping-cart',
     templateUrl: 'app/cart/cart.component.html',
 })
 
-export class CartComponent implements OnInit{
+export class CartComponent implements OnInit {
     products: IProduct[];
     statusMsg: string;
     productList: Product[] = [];
@@ -18,6 +18,7 @@ export class CartComponent implements OnInit{
     priceColl: number[] = [];
     prod_ID: string;
     totalPrice: number = 0;
+    
 
     constructor(private _productService: ProductService, private _cookieService: CookieService) { }
 
@@ -30,19 +31,18 @@ export class CartComponent implements OnInit{
             for (let cookie in cookieColl) {
                 this.productIDColl.push(cookie);
                 //console.log("product IDs: " + this.productIDColl);
+                this.quantityColl.push(this._cookieService.get(cookie));
+                //console.log("quantites: " + this.quantityColl);
             }
 
             //Get product details from database
-            for (let loop_count = 0; loop_count < this.productIDColl.length; loop_count++) {
-                this.prod_ID = this.productIDColl[loop_count];
+            for (let i = 0; i < this.productIDColl.length; i++) {
+                this.prod_ID = this.productIDColl[i];
                 this._productService.getProductById(this.prod_ID).subscribe((productDetails) => {
                     this.products = productDetails;     //Get raw data from database
                     this.productFilter();   //Get productList by filter
-                    console.log(loop_count);
-                    //console.log(this.priceColl[i]);
-
-                    //Calculate total price, but have to wait until finishing data filling
-                    setTimeout(() => { this.totalPrice = this.totalPrice + this.priceColl[loop_count] * parseInt(this.quantityColl[loop_count]); }, 3000);        
+                    setTimeout(()=>{this.totalPrice = this.totalPrice + this.priceColl[i] * parseInt(this.quantityColl[i]);}, 200);
+                    
                 }, (error) => {
                 this.statusMsg = "Service Problem!";
                 })
@@ -52,46 +52,10 @@ export class CartComponent implements OnInit{
         }
     }
 
-    //Id tracker
-    trackById(index: number, product: any) {
-        return product.productID;
-    }
-
     //Quantity update
-    onQuantityChange(val: any) {
-        let date = new Date();
-        date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));      //Set cookie expeirs in 30 days
-        //console.log(val.name)
-        //console.log(val.value)
-        this._cookieService.put(val.name, val.value, { expires: date });        //update cookie
-
-        //Reset all data storages
-        this.productList = [];
-        this.productIDColl = [];
-        this.priceColl = [];
-        this.quantityColl = [];
-        this.totalPrice = 0;
-
-        //Refresh page
-        this.ngOnInit();
+    quantityUpdate(e:Event) {
+        console.log(e);
     }
-
-    //Remove item
-    removeItem(val: any) {
-        console.log(val.name);
-        this._cookieService.remove(val.name);
-
-        //Reset all data storages
-        this.productList = [];
-        this.productIDColl = [];
-        this.priceColl = [];
-        this.quantityColl = [];
-        this.totalPrice = 0;
-
-        //Refresh page
-        this.ngOnInit();
-    }
-    
 
     productFilter() {
         console.log("We are in filter.");
@@ -107,8 +71,7 @@ export class CartComponent implements OnInit{
                 prod.name = product.name;
                 prod.description = product.description;
                 prod.price = product.price;
-                this.priceColl.push(prod.price);        //Store the price for later use
-                this.quantityColl.push(this._cookieService.get(prod.productID));        //Store the quantity for later use
+                this.priceColl.push(prod.price);        //Store the price for later using
                 prod.keyword.push(product.keyword);
                 prod.imageURL.push(product.imageURL);
             } else if (prod.productID == null) {
@@ -116,8 +79,7 @@ export class CartComponent implements OnInit{
                 prod.name = product.name;
                 prod.description = product.description;
                 prod.price = product.price;
-                this.priceColl.push(prod.price);        //Store the price for later use
-                this.quantityColl.push(this._cookieService.get(prod.productID));        //Store the quantity for later use
+                this.priceColl.push(prod.price);        //Store the price for later using
                 prod.keyword.push(product.keyword);
                 prod.imageURL.push(product.imageURL);
             } else {
@@ -134,10 +96,5 @@ export class CartComponent implements OnInit{
         this.productList.push(prod);
     }
 
-    //Testing
-    testing() {
-        console.log("Timing testing...")
-        console.log(this.productList)
-        console.log(this.priceColl)
-    }
+
 }

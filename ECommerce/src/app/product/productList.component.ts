@@ -1,4 +1,4 @@
-﻿import { OnInit, Component, OnDestroy } from "@angular/core";
+﻿import { OnInit, Component } from "@angular/core";
 import { IProduct } from "./product";
 import { ProductService } from "./product.service";
 import { Product } from "./product";
@@ -9,19 +9,17 @@ import { ActivatedRoute } from "@angular/router"
     templateUrl: 'app/product/productList.component.html'
 })
 
-export class ProductListComponent implements OnInit, OnDestroy {
+export class ProductListComponent implements OnInit {
     products: IProduct[];
     statusMsg: string;
     productList: Product[] = [];
-    category: any;
+    category: string;
 
     constructor(private _productService: ProductService, private _activatedRoute: ActivatedRoute) { }
 
     ngOnInit() {
         //Get category parameter from url
-
         this.category = this._activatedRoute.snapshot.params['category'];
-        //console.log(this.category);
 
         if (this.category == null) {
             this._productService.getProducts().subscribe((productData) => {
@@ -31,7 +29,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
                 this.statusMsg = "Service Problem!";
             });
         } else {
-            console.log("we are in else: " + this.category);
             this._productService.getProductsByCategory(this.category).subscribe((productData) => {
                 this.products = productData;
                 this.productFilter();
@@ -41,9 +38,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
         }
     }
 
-    ngOnDestroy() {
-        
-    }
 
     productFilter() {
         console.log("We are in filter.");

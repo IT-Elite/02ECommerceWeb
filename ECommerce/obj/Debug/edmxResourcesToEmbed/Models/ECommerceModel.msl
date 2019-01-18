@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ECommerceModelStoreContainer" CdmEntityContainer="ECommerceEntities">
+    <EntitySetMapping Name="DELIVERYADDRESSes">
+      <EntityTypeMapping TypeName="ECommerceModel.DELIVERYADDRESS">
+        <MappingFragment StoreEntitySet="DELIVERYADDRESS">
+          <ScalarProperty Name="orderID" ColumnName="orderID" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="street" ColumnName="street" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="postCode" ColumnName="postCode" />
+          <ScalarProperty Name="phoneNumber" ColumnName="phoneNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="IMGURLs">
+      <EntityTypeMapping TypeName="ECommerceModel.IMGURL">
+        <MappingFragment StoreEntitySet="IMGURL">
+          <ScalarProperty Name="imageURL" ColumnName="imageURL" />
+          <ScalarProperty Name="productID" ColumnName="productID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KEYWORDS">
+      <EntityTypeMapping TypeName="ECommerceModel.KEYWORD">
+        <MappingFragment StoreEntitySet="KEYWORDS">
+          <ScalarProperty Name="keyword1" ColumnName="keyword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ORDERs">
+      <EntityTypeMapping TypeName="ECommerceModel.ORDER">
+        <MappingFragment StoreEntitySet="ORDER">
+          <ScalarProperty Name="orderID" ColumnName="orderID" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="payStatus" ColumnName="payStatus" />
+          <ScalarProperty Name="orderTime" ColumnName="orderTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ORDERITEMs">
+      <EntityTypeMapping TypeName="ECommerceModel.ORDERITEM">
+        <MappingFragment StoreEntitySet="ORDERITEM">
+          <ScalarProperty Name="productID" ColumnName="productID" />
+          <ScalarProperty Name="orderID" ColumnName="orderID" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="price" ColumnName="price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PRODUCTs">
+      <EntityTypeMapping TypeName="ECommerceModel.PRODUCT">
+        <MappingFragment StoreEntitySet="PRODUCT">
+          <ScalarProperty Name="productID" ColumnName="productID" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="price" ColumnName="price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TOP10SELLER">
+      <EntityTypeMapping TypeName="ECommerceModel.TOP10SELLER">
+        <MappingFragment StoreEntitySet="TOP10SELLER">
+          <ScalarProperty Name="productID" ColumnName="productID" />
+          <ScalarProperty Name="sales" ColumnName="sales" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="CATEGORY" TypeName="ECommerceModel.CATEGORY" StoreEntitySet="CATEGORY">
+      <EndProperty Name="KEYWORDS">
+        <ScalarProperty Name="keyword1" ColumnName="keyword" />
+      </EndProperty>
+      <EndProperty Name="PRODUCT">
+        <ScalarProperty Name="productID" ColumnName="productID" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

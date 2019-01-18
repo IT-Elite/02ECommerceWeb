@@ -9,7 +9,6 @@ import { ProductListComponent } from './product/productList.component';
 import { ProductService } from './product/product.service';
 import { ProductComponent } from './product/product.component';
 import { CartComponent } from './cart/cart.component';
-import { navComponent }  from './navigation/nav.component'
 
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { WINDOW_PROVIDERS } from './window/window.service';
@@ -25,7 +24,7 @@ const appRoutes: Routes = [
 
 @NgModule({
     imports: [BrowserModule, FormsModule, HttpModule, RouterModule.forRoot(appRoutes, { useHash: true })],
-    declarations: [ AppComponent, ProductListComponent, ProductComponent, CartComponent,navComponent ],
+    declarations: [ AppComponent, ProductListComponent, ProductComponent, CartComponent ],
     bootstrap: [AppComponent],
     providers: [ProductService, CookieService, WINDOW_PROVIDERS]
 })

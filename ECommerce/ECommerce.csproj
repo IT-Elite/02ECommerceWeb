@@ -161,6 +161,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -173,11 +175,50 @@
       <DependentUpon>ProductModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DatabaseConnection\SqlHelper.cs" />
+    <Compile Include="Models\DELIVERYADDRESS.cs">
+      <DependentUpon>ECommerceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ECommerceModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ECommerceModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ECommerceModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ECommerceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ECommerceModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ECommerceModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Entities\Address.cs" />
     <Compile Include="Models\Entities\ImageURL.cs" />
+    <Compile Include="Models\Entities\Order.cs" />
+    <Compile Include="Models\Entities\OrderItem.cs" />
     <Compile Include="Models\Entities\ProductDetail.cs" />
     <Compile Include="Models\Entities\Category.cs" />
     <Compile Include="Models\DatabaseConnection\ECommerceDBContext.cs" />
     <Compile Include="Models\Entities\Product.cs" />
+    <Compile Include="Models\IMGURL.cs">
+      <DependentUpon>ECommerceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\KEYWORD.cs">
+      <DependentUpon>ECommerceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ORDER.cs">
+      <DependentUpon>ECommerceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ORDERITEM.cs">
+      <DependentUpon>ECommerceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PRODUCT.cs">
+      <DependentUpon>ECommerceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TOP10SELLER.cs">
+      <DependentUpon>ECommerceModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ORDER.cs">
       <DependentUpon>ProductModel.tt</DependentUpon>
     </Compile>
@@ -226,6 +267,16 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\ECommerceModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ECommerceModel.edmx</DependentUpon>
+      <LastGenOutput>ECommerceModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ECommerceModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ECommerceModel.edmx</DependentUpon>
+      <LastGenOutput>ECommerceModel.cs</LastGenOutput>
+    </Content>
     <Content Include="node_modules\bootstrap\dist\css\bootstrap-theme.css" />
     <Content Include="node_modules\bootstrap\dist\css\bootstrap-theme.min.css" />
     <Content Include="node_modules\bootstrap\dist\css\bootstrap.css" />
@@ -362,6 +413,13 @@
     <Content Include="node_modules\bootstrap\LICENSE" />
     <Content Include="node_modules\bootstrap\package.json" />
     <Content Include="node_modules\bootstrap\README.md" />
+    <EntityDeploy Include="Models\ECommerceModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ECommerceModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ECommerceModel.edmx.diagram">
+      <DependentUpon>ECommerceModel.edmx</DependentUpon>
+    </Content>
     <None Include="packages.config" />
     <EntityDeploy Include="ProductModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -382,7 +440,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="src\app\cart\cart.component.html" />
-    <Content Include="src\app\navigation\nav.component.html" />
     <Content Include="src\app\product\product.component.html" />
     <Content Include="src\app\product\productList.component.html" />
     <Content Include="src\favicon.ico" />
@@ -414,6 +471,20 @@
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="tslint.json" />
     <Content Include="src\tsconfig.json" />
+    <Content Include="Views\Orders\Create.cshtml" />
+    <Content Include="Views\Orders\Delete.cshtml" />
+    <Content Include="Views\Orders\Details.cshtml" />
+    <Content Include="Views\Orders\Edit.cshtml" />
+    <Content Include="Views\Orders\Index.cshtml" />
+    <Content Include="Views\Orders\Address.cshtml" />
+    <Content Include="Views\Orders\OrderItems.cshtml" />
+    <Content Include="Views\Order\Create.cshtml" />
+    <Content Include="Views\Order\Delete.cshtml" />
+    <Content Include="Views\Order\Details.cshtml" />
+    <Content Include="Views\Order\Edit.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
+    <Content Include="Views\Order\GetOrder.cshtml" />
+    <Content Include="Views\Order\AddOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Default\" />
@@ -439,7 +510,6 @@
     <TypeScriptCompile Include="src\app\app.component.ts" />
     <TypeScriptCompile Include="src\app\app.module.ts" />
     <TypeScriptCompile Include="src\app\cart\cart.component.ts" />
-    <TypeScriptCompile Include="src\app\navigation\nav.component.ts" />
     <TypeScriptCompile Include="src\app\product\product.component.ts" />
     <TypeScriptCompile Include="src\app\product\product.service.ts" />
     <TypeScriptCompile Include="src\app\product\product.ts" />

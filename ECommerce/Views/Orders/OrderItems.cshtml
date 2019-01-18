@@ -1,0 +1,54 @@
+﻿@model ECommerce.Models.Order
+
+@{
+    ViewBag.Title = "OrderItems";
+}
+
+<h2>OrderItems</h2>
+
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.OrderID)
+        </dd>
+
+        @foreach (var item in Model.OrderItems)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => item.ProductID)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => item.ProductID)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => item.Quantity)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => item.Quantity)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => item.Price)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => item.Price)
+            </dd>
+
+        }
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.OrderID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+

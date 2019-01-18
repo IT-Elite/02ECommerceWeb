@@ -20,10 +20,9 @@ var ProductListComponent = /** @class */ (function () {
         this.productList = [];
     }
     ProductListComponent.prototype.ngOnInit = function () {
-        //Get category parameter from url
         var _this = this;
+        //Get category parameter from url
         this.category = this._activatedRoute.snapshot.params['category'];
-        //console.log(this.category);
         if (this.category == null) {
             this._productService.getProducts().subscribe(function (productData) {
                 _this.products = productData;
@@ -33,7 +32,6 @@ var ProductListComponent = /** @class */ (function () {
             });
         }
         else {
-            console.log("we are in else: " + this.category);
             this._productService.getProductsByCategory(this.category).subscribe(function (productData) {
                 _this.products = productData;
                 _this.productFilter();
@@ -41,8 +39,6 @@ var ProductListComponent = /** @class */ (function () {
                 _this.statusMsg = "Service Problem!";
             });
         }
-    };
-    ProductListComponent.prototype.ngOnDestroy = function () {
     };
     ProductListComponent.prototype.productFilter = function () {
         console.log("We are in filter.");

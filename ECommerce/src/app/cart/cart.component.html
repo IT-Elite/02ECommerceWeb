@@ -8,7 +8,7 @@
             </div>
             <div class="card-body">
                 <!-- PRODUCT -->
-                <ng-container *ngFor="let product of productList;trackBy:trackById;let i = index;">
+                <ng-container *ngFor="let product of productList; let i = index;">
                     <div class="row" id="{{productIDColl[i]}}">
                         <div class="col-12 col-sm-12 col-md-2 text-center">
                             <img class="img-responsive" src="{{product.imageURL}}" alt="preview" width="120" height="80">
@@ -21,17 +21,17 @@
                         </div>
                         <div class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row">
                             <div class="col-3 col-sm-3 col-md-6 text-md-right" style="padding-top: 5px">
-                                <h6 id="{{product.productID}}" #price>{{product.price | currency:'AUD':true:'1.2-2'}}</h6>
+                                <h6 id="price_{{i}}">{{product.price | currency:'AUD':true:'1.2-2'}}</h6>
                             </div>
                             <div class="col-4 col-sm-4 col-md-4">
                                 <div class="quantity">
-                                    <input type="number" step="1" max="99" min="1" name="{{product.productID}}" value="{{quantityColl[i]}}" title="Qty" class="qty"
-                                           size="4" (change)="onQuantityChange(quan)" #quan/>
+                                    <input type="number" step="1" max="99" min="1" value="{{quantityColl[i]}}" title="Qty" class="qty"
+                                           size="4" onchange="quantityUpdate(e);">
                                     <input type="text" name="productID_{{i}}" value="{{product.productID}}" style="display:none" />
                                 </div>
                             </div>
                             <div class="col-2 col-sm-2 col-md-2 text-right">
-                                <button type="button" class="btn btn-outline-danger btn-xs" name="{{product.productID}}" (click)="removeItem(cancel)" #cancel>
+                                <button type="button" class="btn btn-outline-danger btn-xs">
                                     X
                                 </button>
                             </div>
@@ -45,8 +45,8 @@
                     <div class="pull-right" style="margin: 10px">
                         <a href="" class="btn btn-success pull-right">Checkout</a>
                         <div class="pull-right" style="margin: 5px">
-                            Total price: <b *ngIf="totalPrice!=0">{{totalPrice}}</b>
-                        </div>
+                            Total price: <b>{{totalPrice}}</b>
+</div>
                     </div>
                 </div>
             </div>
