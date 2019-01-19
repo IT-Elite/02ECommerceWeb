@@ -175,24 +175,6 @@
       <DependentUpon>ProductModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DatabaseConnection\SqlHelper.cs" />
-    <Compile Include="Models\DELIVERYADDRESS.cs">
-      <DependentUpon>ECommerceModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ECommerceModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ECommerceModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ECommerceModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ECommerceModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ECommerceModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ECommerceModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\Entities\Address.cs" />
     <Compile Include="Models\Entities\ImageURL.cs" />
     <Compile Include="Models\Entities\Order.cs" />
@@ -201,24 +183,6 @@
     <Compile Include="Models\Entities\Category.cs" />
     <Compile Include="Models\DatabaseConnection\ECommerceDBContext.cs" />
     <Compile Include="Models\Entities\Product.cs" />
-    <Compile Include="Models\IMGURL.cs">
-      <DependentUpon>ECommerceModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\KEYWORD.cs">
-      <DependentUpon>ECommerceModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ORDER.cs">
-      <DependentUpon>ECommerceModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\ORDERITEM.cs">
-      <DependentUpon>ECommerceModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\PRODUCT.cs">
-      <DependentUpon>ECommerceModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\TOP10SELLER.cs">
-      <DependentUpon>ECommerceModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="ORDER.cs">
       <DependentUpon>ProductModel.tt</DependentUpon>
     </Compile>
@@ -267,16 +231,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\ECommerceModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ECommerceModel.edmx</DependentUpon>
-      <LastGenOutput>ECommerceModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Models\ECommerceModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ECommerceModel.edmx</DependentUpon>
-      <LastGenOutput>ECommerceModel.cs</LastGenOutput>
-    </Content>
     <Content Include="node_modules\bootstrap\dist\css\bootstrap-theme.css" />
     <Content Include="node_modules\bootstrap\dist\css\bootstrap-theme.min.css" />
     <Content Include="node_modules\bootstrap\dist\css\bootstrap.css" />
@@ -413,13 +367,6 @@
     <Content Include="node_modules\bootstrap\LICENSE" />
     <Content Include="node_modules\bootstrap\package.json" />
     <Content Include="node_modules\bootstrap\README.md" />
-    <EntityDeploy Include="Models\ECommerceModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ECommerceModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\ECommerceModel.edmx.diagram">
-      <DependentUpon>ECommerceModel.edmx</DependentUpon>
-    </Content>
     <None Include="packages.config" />
     <EntityDeploy Include="ProductModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
