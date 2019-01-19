@@ -395,7 +395,6 @@ C:\Users\Justin\Desktop\IT-Elite\02ECommerceWeb\ECommerce\bin\Microsoft.AI.Web.x
 C:\Users\Justin\Desktop\IT-Elite\02ECommerceWeb\ECommerce\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\Justin\Desktop\IT-Elite\02ECommerceWeb\ECommerce\obj\Debug\ECommerce.csproj.CoreCompileInputs.cache
 C:\Users\Justin\Desktop\IT-Elite\02ECommerceWeb\ECommerce\obj\Debug\ECommerce.csproj.CopyComplete
-C:\Users\Justin\Desktop\IT-Elite\02ECommerceWeb\ECommerce\obj\Debug\ECommerce.csprojAssemblyReference.cache
 C:\My Documents\Website Project\IT Projects\02 E-Commerce\sprint 01\02 System Development\ECommerce\ECommerce\bin\ApplicationInsights.config
 C:\My Documents\Website Project\IT Projects\02 E-Commerce\sprint 01\02 System Development\ECommerce\ECommerce\bin\ECommerce.dll.config
 C:\My Documents\Website Project\IT Projects\02 E-Commerce\sprint 01\02 System Development\ECommerce\ECommerce\bin\ECommerce.dll
@@ -497,3 +496,4 @@ C:\My Documents\Website Project\IT Projects\02 E-Commerce\sprint 01\02 System De
 C:\My Documents\Website Project\IT Projects\02 E-Commerce\sprint 01\02 System Development\ECommerce\ECommerce\obj\Debug\ECommerce.csproj.CopyComplete
 C:\My Documents\Website Project\IT Projects\02 E-Commerce\sprint 01\02 System Development\ECommerce\ECommerce\obj\Debug\ECommerce.dll
 C:\My Documents\Website Project\IT Projects\02 E-Commerce\sprint 01\02 System Development\ECommerce\ECommerce\obj\Debug\ECommerce.pdb
+C:\Users\Justin\Desktop\IT-Elite\02ECommerceWeb\ECommerce\obj\Debug\ECommerce.csprojAssemblyReference.cache
