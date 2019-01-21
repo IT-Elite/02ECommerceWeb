@@ -13,8 +13,8 @@ var core_1 = require("@angular/core");
 var product_1 = require("../product/product");
 var product_service_1 = require("../product/product.service");
 var core_2 = require("angular2-cookie/core");
-var CartComponent = /** @class */ (function () {
-    function CartComponent(_productService, _cookieService) {
+var OrderComponent = /** @class */ (function () {
+    function OrderComponent(_productService, _cookieService) {
         this._productService = _productService;
         this._cookieService = _cookieService;
         this.productList = [];
@@ -24,7 +24,7 @@ var CartComponent = /** @class */ (function () {
         this.totalPrice = 0;
         this.showDialog = false;
     }
-    CartComponent.prototype.ngOnInit = function () {
+    OrderComponent.prototype.ngOnInit = function () {
         var _this = this;
         //Get productID from cookies
         if (this._cookieService.get('user_login') == undefined) { //Check if login token is on
@@ -34,6 +34,9 @@ var CartComponent = /** @class */ (function () {
                 if (cookie !== 'email') { //Exclude email cookie
                     this.productIDColl.push(cookie);
                     //console.log("product IDs: " + this.productIDColl);
+                }
+                else {
+                    this.emailAddress = this._cookieService.get("email");
                 }
             }
             var _loop_1 = function (loop_count) {
@@ -60,43 +63,14 @@ var CartComponent = /** @class */ (function () {
         }
     };
     //Checkout dialog visible change
-    CartComponent.prototype.onVisibleChange = function (visible) {
+    OrderComponent.prototype.onVisibleChange = function (visible) {
         this.showDialog = visible;
     };
     //Id tracker
-    CartComponent.prototype.trackById = function (index, product) {
+    OrderComponent.prototype.trackById = function (index, product) {
         return product.productID;
     };
-    //Quantity update
-    CartComponent.prototype.onQuantityChange = function (val) {
-        var date = new Date();
-        date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000)); //Set cookie expeirs in 30 days
-        //console.log(val.name)
-        //console.log(val.value)
-        this._cookieService.put(val.name, val.value, { expires: date }); //update cookie
-        //Reset all data storages
-        this.productList = [];
-        this.productIDColl = [];
-        this.priceColl = [];
-        this.quantityColl = [];
-        this.totalPrice = 0;
-        //Refresh page
-        this.ngOnInit();
-    };
-    //Remove item
-    CartComponent.prototype.removeItem = function (val) {
-        console.log(val.name);
-        this._cookieService.remove(val.name);
-        //Reset all data storages
-        this.productList = [];
-        this.productIDColl = [];
-        this.priceColl = [];
-        this.quantityColl = [];
-        this.totalPrice = 0;
-        //Refresh page
-        this.ngOnInit();
-    };
-    CartComponent.prototype.productFilter = function () {
+    OrderComponent.prototype.productFilter = function () {
         console.log("We are in filter.");
         //Object Filter
         var prod = new product_1.Product(null, null, null, null, [], []);
@@ -138,14 +112,14 @@ var CartComponent = /** @class */ (function () {
         }
         this.productList.push(prod);
     };
-    CartComponent = __decorate([
+    OrderComponent = __decorate([
         core_1.Component({
-            selector: 'shopping-cart',
-            templateUrl: 'app/cart/cart.component.html'
+            selector: 'app-order',
+            templateUrl: 'app/order/order.component.html'
         }),
         __metadata("design:paramtypes", [product_service_1.ProductService, core_2.CookieService])
-    ], CartComponent);
-    return CartComponent;
+    ], OrderComponent);
+    return OrderComponent;
 }());
-exports.CartComponent = CartComponent;
-//# sourceMappingURL=cart.component.js.map
+exports.OrderComponent = OrderComponent;
+//# sourceMappingURL=order.component.js.map

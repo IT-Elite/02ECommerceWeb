@@ -1,0 +1,92 @@
+﻿
+<form action="" method="post">
+    <div *ngIf="productList">
+        <div class="container">
+            <div class="card shopping-cart">
+                <div class="card-header bg-dark text-light">
+                    Order LIst
+                </div>
+                <div class="card-body">
+                    <!-- PRODUCT -->
+                    <ng-container *ngFor="let product of productList;trackBy:trackById;let i = index;">
+                        <div class="row" id="{{productIDColl[i]}}">
+                            <div class="col-12 col-sm-12 col-md-2 text-center">
+                                <img class="img-responsive" src="{{product.imageURL}}" alt="preview" width="120" height="80">
+                            </div>
+                            <div class="col-12 text-sm-center col-sm-12 text-md-left col-md-6">
+                                <h4 class="product-name">{{product.name}}</h4>
+                                <h4>
+                                    <small>{{product.description}}</small>
+                                </h4>
+                            </div>
+                            <div class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row">
+                                <div class="col-3 col-sm-3 col-md-6 text-md-right" style="padding-top: 5px">
+                                    <h6 id="{{product.productID}}" #price>{{product.price | currency:'AUD':true:'1.2-2'}}</h6>
+                                </div>
+                                <div class="col-4 col-sm-4 col-md-4">
+                                    <div class="quantity">
+                                        <input type="number" step="1" max="99" min="1" name="quantity{{1}}" value="{{quantityColl[i]}}" title="Qty" class="qty"
+                                               size="4" readonly />
+                                        <input type="text" name="productID{{i}}" value="{{product.productID}}" style="display:none" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <!-- END PRODUCT -->
+                    </ng-container>
+                    <div class="card-footer">
+                        <div class="pull-right" style="margin: 10px">
+                            <div class="pull-right" style="margin: 5px">
+                                Total price: <b *ngIf="totalPrice!=0">{{totalPrice}}</b>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3>Contact</h3>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputEmail4">Email</label>
+            <input type="email" class="form-control" id="inputEmail4" name="email" placeholder="Email" value="{{emailAddress}}">
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputMobile">Mobile</label>
+            <input type="tel" class="form-control" id="inputMobile" name="mobile" placeholder="0400 000 000" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputAddress">Address</label>
+        <input type="text" class="form-control" id="inputAddress" name="address" placeholder="1234 Main St" value="">
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputCity">City</label>
+            <input type="text" class="form-control" id="inputCity" name="city" value="">
+        </div>
+        <div class="form-group col-md-4">
+            <label for="inputState">State</label>
+            <select id="inputState" class="form-control" name="state">
+                <option selected value="">Choose...</option>
+                <option value="ACT">ACT</option>
+                <option value="NSW">NSW</option>
+                <option value="NT">NT</option>
+                <option value="SA">SA</option>
+                <option value="TAS">TAS</option>
+                <option value="QLD">QLD</option>
+                <option value="VIC">VIC</option>
+                <option value="WA">WA</option>
+            </select>
+        </div>
+        <div class="form-group col-md-2">
+            <label for="inputZip">Zip</label>
+            <input type="text" class="form-control" id="inputZip" name="zip" value="">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Place Order</button>
+</form>

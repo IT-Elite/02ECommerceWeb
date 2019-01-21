@@ -1,0 +1,9 @@
+﻿<div *ngIf="visible" class="dialog">
+    <h1>Guest Checkout</h1>
+        <input type="email" placeholder="EMAIL" name="email" required #email/><br />
+        <input type="checkbox" />Subscribe to newsletter<br />
+        <button class="btn btn-success" (click)="generateCookie(email);turnToOrder()">Guest Checkout</button>
+
+    <button *ngIf="closable" (click)="close()" aria-label="Close" class="dialog__close-btn">X</button>
+</div>
+<div *ngIf="visible" class="overlay" (click)="close()"></div>

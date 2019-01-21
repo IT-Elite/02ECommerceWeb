@@ -1,4 +1,4 @@
-﻿<form *ngIf="productList" action="/action_page.php" method="post">
+﻿<div *ngIf="productList">
     <div class="container">
         <div class="card shopping-cart">
             <div class="card-header bg-dark text-light">
@@ -26,7 +26,7 @@
                             <div class="col-4 col-sm-4 col-md-4">
                                 <div class="quantity">
                                     <input type="number" step="1" max="99" min="1" name="{{product.productID}}" value="{{quantityColl[i]}}" title="Qty" class="qty"
-                                           size="4" (change)="onQuantityChange(quan)" #quan/>
+                                           size="4" (change)="onQuantityChange(quan)" #quan />
                                     <input type="text" name="productID_{{i}}" value="{{product.productID}}" style="display:none" />
                                 </div>
                             </div>
@@ -43,7 +43,7 @@
 
                 <div class="card-footer">
                     <div class="pull-right" style="margin: 10px">
-                        <a href="" class="btn btn-success pull-right">Checkout</a>
+                        <a class="btn btn-success pull-right" (click)="showDialog = !showDialog">Checkout</a>
                         <div class="pull-right" style="margin: 5px">
                             Total price: <b *ngIf="totalPrice!=0">{{totalPrice}}</b>
                         </div>
@@ -52,4 +52,7 @@
             </div>
         </div>
     </div>
-</form>
+</div>
+
+<!--Login Dialog-->
+<app-login [(visible)]="showDialog" (visibleChange) ="onVisibleChange($event)"></app-login>

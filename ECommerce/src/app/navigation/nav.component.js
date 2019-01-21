@@ -14,23 +14,23 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var window_service_1 = require("../window/window.service");
-var navComponent = /** @class */ (function () {
-    function navComponent(window) {
+var NavComponent = /** @class */ (function () {
+    function NavComponent(window) {
         this.window = window;
         this.host = this.window.location.host; //Get the host through window injection
     }
-    navComponent.prototype.refresh = function () {
+    NavComponent.prototype.refresh = function () {
         this.window.location.reload();
     };
-    navComponent = __decorate([
+    NavComponent = __decorate([
         core_1.Component({
             selector: 'my-nav',
             templateUrl: 'app/navigation/nav.component.html'
         }),
         __param(0, core_1.Inject(window_service_1.WINDOW)),
         __metadata("design:paramtypes", [Window])
-    ], navComponent);
-    return navComponent;
+    ], NavComponent);
+    return NavComponent;
 }());
-exports.navComponent = navComponent;
+exports.NavComponent = NavComponent;
 //# sourceMappingURL=nav.component.js.map

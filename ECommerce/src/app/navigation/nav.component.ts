@@ -7,7 +7,7 @@ import { WINDOW } from '../window/window.service';
     templateUrl: 'app/navigation/nav.component.html'
 })
 
-export class navComponent {
+export class NavComponent {
     constructor(@Inject(WINDOW) private window: Window) { }
     host: string = this.window.location.host;       //Get the host through window injection
 

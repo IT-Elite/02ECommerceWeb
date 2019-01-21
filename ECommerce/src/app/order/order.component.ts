@@ -1,15 +1,15 @@
-﻿import { OnInit, Component} from "@angular/core";
+﻿import { OnInit, Component } from "@angular/core";
 import { IProduct, Product } from "../product/product";
 import { ProductService } from "../product/product.service";
 import { CookieService } from "angular2-cookie/core";
 
 
 @Component({
-    selector: 'shopping-cart',
-    templateUrl: 'app/cart/cart.component.html'
+    selector: 'app-order',
+    templateUrl: 'app/order/order.component.html'
 })
 
-export class CartComponent implements OnInit{
+export class OrderComponent implements OnInit {
     products: IProduct[];
     statusMsg: string;
     productList: Product[] = [];
@@ -19,6 +19,7 @@ export class CartComponent implements OnInit{
     prod_ID: string;
     totalPrice: number = 0;
     showDialog: boolean = false;
+    emailAddress: string;
 
     constructor(private _productService: ProductService, private _cookieService: CookieService) { }
 
@@ -32,6 +33,8 @@ export class CartComponent implements OnInit{
                 if (cookie !== 'email') {           //Exclude email cookie
                     this.productIDColl.push(cookie);
                     //console.log("product IDs: " + this.productIDColl);
+                } else {
+                    this.emailAddress = this._cookieService.get("email");
                 }
             }
 
@@ -45,9 +48,9 @@ export class CartComponent implements OnInit{
                     //console.log(this.priceColl[i]);
 
                     //Calculate total price, but have to wait until finishing data filling
-                    setTimeout(() => { this.totalPrice = this.totalPrice + this.priceColl[loop_count] * parseInt(this.quantityColl[loop_count]); }, 3000);        
+                    setTimeout(() => { this.totalPrice = this.totalPrice + this.priceColl[loop_count] * parseInt(this.quantityColl[loop_count]); }, 3000);
                 }, (error) => {
-                this.statusMsg = "Service Problem!";
+                    this.statusMsg = "Service Problem!";
                 })
             }
         } else {
@@ -66,41 +69,6 @@ export class CartComponent implements OnInit{
         return product.productID;
     }
 
-    //Quantity update
-    onQuantityChange(val: any) {
-        let date = new Date();
-        date.setTime(date.getTime() + (30 * 24 * 60 * 60 * 1000));      //Set cookie expeirs in 30 days
-        //console.log(val.name)
-        //console.log(val.value)
-        this._cookieService.put(val.name, val.value, { expires: date });        //update cookie
-
-        //Reset all data storages
-        this.productList = [];
-        this.productIDColl = [];
-        this.priceColl = [];
-        this.quantityColl = [];
-        this.totalPrice = 0;
-
-        //Refresh page
-        this.ngOnInit();
-    }
-
-    //Remove item
-    removeItem(val: any) {
-        console.log(val.name);
-        this._cookieService.remove(val.name);
-
-        //Reset all data storages
-        this.productList = [];
-        this.productIDColl = [];
-        this.priceColl = [];
-        this.quantityColl = [];
-        this.totalPrice = 0;
-
-        //Refresh page
-        this.ngOnInit();
-    }
-    
 
     productFilter() {
         console.log("We are in filter.");
