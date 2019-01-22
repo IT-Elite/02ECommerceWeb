@@ -19,9 +19,12 @@ var cart_component_1 = require("./cart/cart.component");
 var nav_component_1 = require("./navigation/nav.component");
 var login_component_1 = require("./login/login.component");
 var order_component_1 = require("./order/order.component");
+var home_component_1 = require("./home/home.component");
+var footer_component_1 = require("./navigation/footer.component");
 var cookies_service_1 = require("angular2-cookie/services/cookies.service");
 var window_service_1 = require("./window/window.service");
 var appRoutes = [
+    { path: 'home', component: home_component_1.HomeComponent },
     { path: 'order', component: order_component_1.OrderComponent },
     { path: 'product', component: productList_component_1.ProductListComponent },
     { path: 'product/cart', component: cart_component_1.CartComponent },
@@ -35,7 +38,7 @@ var AppModule = /** @class */ (function () {
     AppModule = __decorate([
         core_1.NgModule({
             imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule, router_1.RouterModule.forRoot(appRoutes, { useHash: true })],
-            declarations: [app_component_1.AppComponent, productList_component_1.ProductListComponent, product_component_1.ProductComponent, cart_component_1.CartComponent, nav_component_1.NavComponent, login_component_1.LoginComponent, order_component_1.OrderComponent],
+            declarations: [app_component_1.AppComponent, productList_component_1.ProductListComponent, product_component_1.ProductComponent, cart_component_1.CartComponent, nav_component_1.NavComponent, login_component_1.LoginComponent, order_component_1.OrderComponent, home_component_1.HomeComponent, footer_component_1.FooterComponent],
             bootstrap: [app_component_1.AppComponent],
             providers: [product_service_1.ProductService, cookies_service_1.CookieService, window_service_1.WINDOW_PROVIDERS]
         })

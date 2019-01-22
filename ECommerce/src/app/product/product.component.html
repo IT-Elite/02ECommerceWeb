@@ -1,4 +1,4 @@
-﻿<div *ngIf="productList" id="myCarousel" class="carousel slide" data-ride="carousel">
+﻿<div *ngIf="productList" id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-top:110px; margin-bottom:110px;">
     <!-- Indicators -->
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -77,6 +77,4 @@
         <button class="btn btn-default" (click)="quantityPlus()">+</button>
         <button class="btn btn-danger" (click)="generateCookie()">Add to cart</button>
     </form>
-
-    <p>Cookie Testing: {{cookieValue}}</p>
 </div>

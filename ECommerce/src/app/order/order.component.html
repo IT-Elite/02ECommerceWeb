@@ -42,31 +42,41 @@
                             </div>
                         </div>
                     </div>
-                    <h3>Contact</h3>
+                    <h4>Contact</h4>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputEmail4">Email</label>
-                            <input type="email" class="form-control" id="inputEmail4" name="email" placeholder="Email" value="{{emailAddress}}">
+                            <input type="email" class="form-control" id="inputEmail4" name="email" placeholder="Email" value="{{emailAddress}}" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="firstName">First Name</label>
+                            <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Jane" value="" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Jones" value="" required>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputMobile">Mobile</label>
-                            <input type="tel" class="form-control" id="inputMobile" name="mobile" placeholder="0400 000 000" value="">
+                            <input type="tel" class="form-control" id="inputMobile" name="mobile" placeholder="0400 000 000" value="" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputAddress">Address</label>
-                        <input type="text" class="form-control" id="inputAddress" name="address" placeholder="1234 Main St" value="">
+                        <input type="text" class="form-control" id="inputAddress" name="address" placeholder="1234 Main St" value="" required>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputCity">City</label>
-                            <input type="text" class="form-control" id="inputCity" name="city" value="">
+                            <input type="text" class="form-control" id="inputCity" name="city" placeholder="Sydney" value="" required>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="inputState">State</label>
-                            <select id="inputState" class="form-control" name="state">
+                            <select id="inputState" class="form-control" name="state" required>
                                 <option selected value="">Choose...</option>
                                 <option value="ACT">ACT</option>
                                 <option value="NSW">NSW</option>
@@ -80,7 +90,7 @@
                         </div>
                         <div class="form-group col-md-2">
                             <label for="inputZip">Zip</label>
-                            <input type="text" class="form-control" id="inputZip" name="zip" value="">
+                            <input type="text" class="form-control" id="inputZip" name="zip" placeholder="2000" value="" required>
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Place Order</button>

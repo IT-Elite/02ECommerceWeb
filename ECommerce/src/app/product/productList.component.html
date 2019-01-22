@@ -1,12 +1,12 @@
-﻿<div class="container">
+﻿<div class="container" style="margin-top:110px;margin-bottom:110px;">
     <div class="row">
         <ng-container *ngFor="let product of productList;">
-            <div class="col-sm-6 text-center" *ngIf="productList">
+            <div class="col-sm-6 text-center" *ngIf="productList" style="margin-bottom:50px;">
                 <img src="{{product.imageURL}}" class="img-rounded" width="300" height="412" alt="{{product.name}}">
                 <h5>{{product.name}}</h5>
                 <h6>{{product.description}}</h6>
                 <div>{{product.price | currency:'AUD':true:'1.2-2'}}</div>
-                <button class="btn-default btn-lg" [routerLink]="['/product',product.productID]">SHOP NOW</button>
+                <button class="btn btn-outline-dark btn-md" [routerLink]="['/product',product.productID]">SHOP NOW</button>
             </div>
         </ng-container>
         <div *ngIf="!productList">

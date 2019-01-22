@@ -12,12 +12,15 @@ import { CartComponent } from './cart/cart.component';
 import { NavComponent } from './navigation/nav.component';
 import { LoginComponent } from './login/login.component';
 import { OrderComponent } from './order/order.component';
+import { HomeComponent } from './home/home.component';
+import { FooterComponent } from './navigation/footer.component';
 
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { WINDOW_PROVIDERS } from './window/window.service';
 
 
 const appRoutes: Routes = [
+    { path: 'home', component: HomeComponent },
     { path: 'order', component: OrderComponent },
     { path: 'product', component: ProductListComponent },
     { path: 'product/cart', component: CartComponent },
@@ -28,7 +31,7 @@ const appRoutes: Routes = [
 
 @NgModule({
     imports: [BrowserModule, FormsModule, HttpModule, RouterModule.forRoot(appRoutes, { useHash: true })],
-    declarations: [ AppComponent, ProductListComponent, ProductComponent, CartComponent, NavComponent, LoginComponent, OrderComponent],
+    declarations: [ AppComponent, ProductListComponent, ProductComponent, CartComponent, NavComponent, LoginComponent, OrderComponent, HomeComponent, FooterComponent],
     bootstrap: [AppComponent],
     providers: [ProductService, CookieService, WINDOW_PROVIDERS]
 })
