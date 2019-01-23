@@ -1,7 +1,6 @@
 ﻿import { Component, OnInit, Input, Output, EventEmitter, Inject } from "@angular/core";
 import { CookieService } from "angular2-cookie";
-import { WINDOW } from "../window/window.service"
-import { validateConfig } from "@angular/router/src/config";
+import { WINDOW } from "../window/window.service";
 
 
 @Component({

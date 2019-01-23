@@ -8,21 +8,26 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var product_1 = require("../product/product");
 var product_service_1 = require("../product/product.service");
 var core_2 = require("angular2-cookie/core");
+var window_service_1 = require("../window/window.service");
 var OrderComponent = /** @class */ (function () {
-    function OrderComponent(_productService, _cookieService) {
+    function OrderComponent(_productService, _cookieService, window) {
         this._productService = _productService;
         this._cookieService = _cookieService;
+        this.window = window;
         this.productList = [];
         this.productIDColl = [];
         this.quantityColl = [];
         this.priceColl = [];
         this.totalPrice = 0;
-        this.showDialog = false;
+        this.host = this.window.location.host; //Get the host through window injection
     }
     OrderComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -61,10 +66,6 @@ var OrderComponent = /** @class */ (function () {
         else {
             //Code for login user
         }
-    };
-    //Checkout dialog visible change
-    OrderComponent.prototype.onVisibleChange = function (visible) {
-        this.showDialog = visible;
     };
     //Id tracker
     OrderComponent.prototype.trackById = function (index, product) {
@@ -117,7 +118,8 @@ var OrderComponent = /** @class */ (function () {
             selector: 'app-order',
             templateUrl: 'app/order/order.component.html'
         }),
-        __metadata("design:paramtypes", [product_service_1.ProductService, core_2.CookieService])
+        __param(2, core_1.Inject(window_service_1.WINDOW)),
+        __metadata("design:paramtypes", [product_service_1.ProductService, core_2.CookieService, Window])
     ], OrderComponent);
     return OrderComponent;
 }());

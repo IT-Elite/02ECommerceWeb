@@ -1,7 +1,8 @@
-﻿import { OnInit, Component } from "@angular/core";
+﻿import { OnInit, Component,Inject } from "@angular/core";
 import { IProduct, Product } from "../product/product";
 import { ProductService } from "../product/product.service";
 import { CookieService } from "angular2-cookie/core";
+import { WINDOW } from "../window/window.service";
 
 
 @Component({
@@ -18,10 +19,10 @@ export class OrderComponent implements OnInit {
     priceColl: number[] = [];
     prod_ID: string;
     totalPrice: number = 0;
-    showDialog: boolean = false;
     emailAddress: string;
+    host: string = this.window.location.host;       //Get the host through window injection
 
-    constructor(private _productService: ProductService, private _cookieService: CookieService) { }
+    constructor(private _productService: ProductService, private _cookieService: CookieService, @Inject(WINDOW) private window: Window) { }
 
     ngOnInit() {
         //Get productID from cookies
@@ -56,11 +57,6 @@ export class OrderComponent implements OnInit {
         } else {
             //Code for login user
         }
-    }
-
-    //Checkout dialog visible change
-    onVisibleChange(visible: boolean) {
-        this.showDialog = visible;
     }
 
 

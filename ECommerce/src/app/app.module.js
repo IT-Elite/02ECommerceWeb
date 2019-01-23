@@ -30,7 +30,7 @@ var appRoutes = [
     { path: 'product/cart', component: cart_component_1.CartComponent },
     { path: 'product/:productId', component: product_component_1.ProductComponent },
     { path: 'product/catalog/:category', component: productList_component_1.ProductListComponent },
-    { path: '**', component: productList_component_1.ProductListComponent }
+    { path: '**', component: home_component_1.HomeComponent }
 ];
 var AppModule = /** @class */ (function () {
     function AppModule() {
