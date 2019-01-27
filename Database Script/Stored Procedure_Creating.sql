@@ -1,4 +1,4 @@
-USE ECOMMERCE
+﻿USE ECOMMERCE
 GO
 /****** Object:  StoredProcedure [dbo].[USP.GetALLCategory]    Script Date: 2/01/2019 1:28:50 PM ******/
 SET ANSI_NULLS ON
@@ -194,4 +194,33 @@ AS
 		IF @Error <> 0
 		RETURN @Error		
 	END
+GO
+
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[USP_TOP10] 
+	-- Add the parameters for the stored procedure here
+	
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+	truncate table TOP10SELLER
+	INSERT INTO TOP10SELLER(productID, sales)
+    SELECT p_top10.ProductID,Total 
+	FROM
+    (
+        SELECT TOP 10 ProductID, SUM(quantity) AS Total
+        FROM ORDERITEM 
+        GROUP BY ProductID
+		ORDER BY Total DESC        
+    ) AS p_top10
+	ORDER BY Total DESC
+END
 GO

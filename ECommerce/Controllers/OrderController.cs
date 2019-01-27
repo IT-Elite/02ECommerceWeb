@@ -39,28 +39,153 @@ namespace ECommerce.Controllers
         // GET: Order/AddOrder
         public ActionResult AddOrder()
         {
-            return View();
+            // Read Order and Address Parameters
+            string email = Request.QueryString["email"];
+            string firstName = Request.QueryString["firstName"];
+            string lastName = Request.QueryString["lastName"];
+            string phoneNumber = Request.QueryString["mobile"];
+            string street = Request.QueryString["address"];
+            string city = Request.QueryString["city"];
+            string state = Request.QueryString["state"];
+            string postCode = Request.QueryString["zip"];
+            bool payStatus = false;
+            Address deliveryAddress = new Address(firstName, lastName, street, city, state, postCode, phoneNumber);
+            OrderItemCollection orderItems = new OrderItemCollection();
+
+            // Read OrderItems
+            int count = 0;
+            while (Request.QueryString["productID" + count] != null)
+            {
+                int productID = int.Parse(Request.QueryString["productID" + count]);
+                int quantity = int.Parse(Request.QueryString["quantity" + count]);
+                OrderItem orderItem = new OrderItem(productID, quantity);
+                orderItems.Add(orderItem);
+                count++;
+            }
+
+            if (count != 0)
+            {
+                Order order = new Order(email, payStatus, deliveryAddress, orderItems);
+                order.OrderTime = DateTime.Now;
+
+                // Add Order to the DataBase
+                int orderID = order.AddNewOrder(order);
+
+                // Clear Cookies
+                if (orderID != 0)
+                {
+                    if (Request.Cookies["email"] != null)
+                    {
+                        Response.Cookies["email"].Expires = DateTime.Now.AddDays(-1);
+                    }
+                    foreach (OrderItem item in orderItems)
+                    {
+                        if (Request.Cookies[item.ProductID.ToString()] != null)
+                        {
+                            Response.Cookies[item.ProductID.ToString()].Expires = DateTime.Now.AddDays(-1);
+                        }
+                    }
+                }
+
+                // Return OrderID to HttpCookie
+                HttpCookie httpCookie = new HttpCookie("orderID", orderID.ToString());
+                httpCookie.Expires = DateTime.MaxValue;
+                Response.Cookies.Add(httpCookie);
+
+                return Content("<script language='javascript' type='text/javascript'>alert('orderID:" + orderID + "');window.location.href='http://localhost:51670/src/index.html';</script>");
+                //return Redirect("~/src/index.html");
+            }
+            else
+            {
+                return Content("<script language='javascript' type='text/javascript'>alert('No Products in Cart! Please Add Products before placing an Order');window.location.href='http://localhost:51670/src/index.html';</script>");
+            }
         }
 
+
+
         // POST: Order/AddOrder
-        [HttpPost, ActionName("AddOrder")]
-        [ValidateAntiForgeryToken]
-        public ActionResult AddOrder(Order order)
+        [HttpPost]
+        public ActionResult AddOrder(string id)
         {
-            int orderID = 0;
-            if (ModelState.IsValid)
+            // Read Order and Address Parameters
+            string email = Request.Form["email"];
+            string firstName = Request.Form["firstName"];
+            string lastName = Request.Form["lastName"];
+            string phoneNumber = Request.Form["mobile"];
+            string street = Request.Form["address"];
+            string city = Request.Form["city"];
+            string state = Request.Form["state"];
+            string postCode = Request.Form["zip"];
+            bool payStatus = false;
+            Address deliveryAddress = new Address(firstName, lastName, street, city, state, postCode, phoneNumber);
+            OrderItemCollection orderItems = new OrderItemCollection();
+
+            // Read OrderItems
+            int count = 0;
+            while (Request.Form["productID" + count] != null)
             {
-                if (System.Text.RegularExpressions.Regex.IsMatch(order.OrderItemsString, "^[0-9,;]+$"))
-                {
-                    order.OrderItems = new OrderItemCollection(order.OrderItemsString);
-                }
-                order.OrderTime = DateTime.Now;
-                orderID = order.AddNewOrder(order);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                int productID = int.Parse(Request.Form["productID" + count]);
+                int quantity = int.Parse(Request.Form["quantity" + count]);
+                OrderItem orderItem = new OrderItem(productID, quantity);
+                orderItems.Add(orderItem);
+                count++;
             }
-            return View(orderID);
+
+            if (count != 0)
+            {
+                Order order = new Order(email, payStatus, deliveryAddress, orderItems);
+                order.OrderTime = DateTime.Now;
+
+                // Add Order to the DataBase
+                int orderID = order.AddNewOrder(order);
+
+                // Clear Cookies
+                if (orderID != 0)
+                {
+                    if (Request.Cookies["email"] != null)
+                    {
+                        Response.Cookies["email"].Expires = DateTime.Now.AddDays(-1);
+                    }
+                    foreach (OrderItem item in orderItems)
+                    {
+                        if (Request.Cookies[item.ProductID.ToString()] != null)
+                        {
+                            Response.Cookies[item.ProductID.ToString()].Expires = DateTime.Now.AddDays(-1);
+                        }
+                    }
+                }
+
+                // Return OrderID to HttpCookie
+                HttpCookie httpCookie = new HttpCookie("orderID", orderID.ToString());
+                httpCookie.Expires = DateTime.MaxValue;
+                Response.Cookies.Add(httpCookie);
+
+                return Content("<script language='javascript' type='text/javascript'>alert('orderID:" + orderID + "');window.location.href='http://localhost:51670/src/index.html';</script>");
+                //return Redirect("~/src/index.html");
+            }
+            else
+            {
+                return Content("<script language='javascript' type='text/javascript'>alert('No Products in Cart! Please Add Products before placing an Order');window.location.href='http://localhost:51670/src/index.html';</script>");
+            }
         }
+
+
+        //public ActionResult AddOrder(Order order)
+        //{
+        //    int orderID = 0;
+        //    if (ModelState.IsValid)
+        //    {
+        //        if (System.Text.RegularExpressions.Regex.IsMatch(order.OrderItemsString, "^[0-9,;]+$"))
+        //        {
+        //            order.OrderItems = new OrderItemCollection(order.OrderItemsString);
+        //        }
+        //        order.OrderTime = DateTime.Now;
+        //        orderID = order.AddNewOrder(order);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(orderID);
+        //}
 
 
         //// GET: Order/Details/5

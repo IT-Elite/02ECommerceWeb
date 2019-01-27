@@ -14,19 +14,15 @@ namespace ECommerce
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Order",
+                url: "Order/AddOrder/{*id}",
+                defaults: new { controller = "Order", action = "AddOrder", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
-
-            routes.MapRoute(
-                name: "Orders",
-                url: "{controller}/{action}/{name}/{id}"
-            );
-
-            routes.MapRoute(
-                name: "Order",
-                url: "{controller}/{action}/{name}/{id}"
             );
         }
     }

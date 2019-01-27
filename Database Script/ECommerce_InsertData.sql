@@ -28,34 +28,34 @@ INSERT INTO [PRODUCT] ([name], [description], [price]) VALUES(N'Advanced Time Zo
 
 
 
-INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'0101.jpg', 1001);
-INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'0102.jpg', 1001);
-INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'0103.jpg', 1001);
-INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'0104.jpg', 1001);
-INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'0201.jpg', 1002);
-INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'0301.jpg', 1003);
-INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'0302.jpg', 1003);
-INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'0401.jpg', 1004);
-INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'0501.jpg', 1005);
-INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'0601.jpg', 1006);
-INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'0701.jpg', 1007);
-INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'0801.jpg', 1008);
-INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'0802.jpg', 1008);
-INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'0901.jpg', 1009);
-INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'0902.jpg', 1009);
-INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'1001.jpg', 1010);
-INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'1002.jpg', 1010);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'img/0101.jpg', 1001);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'img/0102.jpg', 1001);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'img/0103.jpg', 1001);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'img/0104.jpg', 1001);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'img/0201.jpg', 1002);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'img/0301.jpg', 1003);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'img/0302.jpg', 1003);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'img/0401.jpg', 1004);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'img/0501.jpg', 1005);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'img/0601.jpg', 1006);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'img/0701.jpg', 1007);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'img/0801.jpg', 1008);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'img/0802.jpg', 1008);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'img/0901.jpg', 1009);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'img/0902.jpg', 1009);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'img/1001.jpg', 1010);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'img/1002.jpg', 1010);
 
-INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'1101.jpg', 1011);
-INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'1201.jpg', 1012);
-INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'1301.jpg', 1013);
-INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'1401.jpg', 1014);
-INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'1501.jpg', 1015);
-INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'1601.jpg', 1016);
-INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'1701.jpg', 1017);
-INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'1801.jpg', 1018);
-INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'1901.jpg', 1019);
-INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'2001.jpg', 1020);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'img/1101.jpg', 1011);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'img/1201.jpg', 1012);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'img/1301.jpg', 1013);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'img/1401.jpg', 1014);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'img/1501.jpg', 1015);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'img/1601.jpg', 1016);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'img/1701.jpg', 1017);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'img/1801.jpg', 1018);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'img/1901.jpg', 1019);
+INSERT INTO [IMGURL] ([imageURL], [productID]) VALUES (N'img/2001.jpg', 1020);
 
 
 INSERT INTO [KEYWORDS] ([keyword]) VALUES (N'Anti Aging');
