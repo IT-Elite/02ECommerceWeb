@@ -4,7 +4,8 @@ import { WINDOW } from '../window/window.service';
 
 @Component({
     selector: 'my-nav',
-    templateUrl: 'app/navigation/nav.component.html'
+    templateUrl: 'app/navigation/nav.component.html',
+    styleUrls:['app/navigation/nav.component.html']
 })
 
 export class NavComponent {

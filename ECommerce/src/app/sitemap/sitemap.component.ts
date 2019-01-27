@@ -2,12 +2,11 @@
 import { WINDOW } from '../window/window.service';
 
 @Component({
-    selector: 'app-footer',
-    templateUrl:'app/navigation/footer.component.html'
+    selector: 'app-sitemap',
+    templateUrl:'app/sitemap/sitemap.component.html'
 })
 
-export class FooterComponent {
+export class SitemapComponent {
     constructor(@Inject(WINDOW) private window: Window) { }
-
     host: string = this.window.location.host;       //Get the host through window injection
 }

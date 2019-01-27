@@ -14,20 +14,20 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var window_service_1 = require("../window/window.service");
-var FooterComponent = /** @class */ (function () {
-    function FooterComponent(window) {
+var SitemapComponent = /** @class */ (function () {
+    function SitemapComponent(window) {
         this.window = window;
         this.host = this.window.location.host; //Get the host through window injection
     }
-    FooterComponent = __decorate([
+    SitemapComponent = __decorate([
         core_1.Component({
-            selector: 'app-footer',
-            templateUrl: 'app/navigation/footer.component.html'
+            selector: 'app-sitemap',
+            templateUrl: 'app/sitemap/sitemap.component.html'
         }),
         __param(0, core_1.Inject(window_service_1.WINDOW)),
         __metadata("design:paramtypes", [Window])
-    ], FooterComponent);
-    return FooterComponent;
+    ], SitemapComponent);
+    return SitemapComponent;
 }());
-exports.FooterComponent = FooterComponent;
-//# sourceMappingURL=footer.component.js.map
+exports.SitemapComponent = SitemapComponent;
+//# sourceMappingURL=sitemap.component.js.map

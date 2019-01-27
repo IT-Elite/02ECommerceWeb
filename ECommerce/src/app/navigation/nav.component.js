@@ -25,7 +25,8 @@ var NavComponent = /** @class */ (function () {
     NavComponent = __decorate([
         core_1.Component({
             selector: 'my-nav',
-            templateUrl: 'app/navigation/nav.component.html'
+            templateUrl: 'app/navigation/nav.component.html',
+            styleUrls: ['app/navigation/nav.component.html']
         }),
         __param(0, core_1.Inject(window_service_1.WINDOW)),
         __metadata("design:paramtypes", [Window])

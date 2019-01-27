@@ -1,4 +1,24 @@
-﻿<nav class="navbar navbar-dark bg-dark navbar-expand-lg navbar-inverse fixed-top">
+﻿<style>
+    .dropdown-menu {
+        background-color:#343a40;
+        width: 2137%;
+        left: -1002%;
+        border:0px;
+    }
+
+    h4{
+        color:white;
+    }
+
+    .dropdown-item {
+        color: #FCF2CB;
+    }
+    a:hover {
+        background-color: #1E4363;
+    }
+</style>
+
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg navbar-inverse fixed-top">
     <a class="navbar-brand" href="http://{{host}}/src/#/home">Ecommerce Demo</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -17,26 +37,69 @@
                     Product
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="http://{{host}}/src/#/product">All Products</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="http://{{host}}/src/#/product/catalog/Spring" (click)="refresh()">Spring</a>
-                    <a class="dropdown-item" href="http://{{host}}/src/#/product/catalog/Summer" (click)="refresh()">Summer</a>
-                    <a class="dropdown-item" href="http://{{host}}/src/#/product/catalog/Autumn" (click)="refresh()">Autumn</a>
-                    <a class="dropdown-item" href="http://{{host}}/src/#/product/catalog/Winter" (click)="refresh()">Winter</a>
-
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="http://{{host}}/src/#/product/catalog/Eye Care" (click)="refresh()">Eye Care</a>
-                    <a class="dropdown-item" href="http://{{host}}/src/#/product/catalog/Acne" (click)="refresh()">Acne</a>
-                    <a class="dropdown-item" href="http://{{host}}/src/#/product/catalog/Hydration" (click)="refresh()">Hydration</a>
-                    <a class="dropdown-item" href="http://{{host}}/src/#/product/catalog/Eye Care" (click)="refresh()">Eye Care</a>
-
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="http://{{host}}/src/#/product/catalog/Eye Care" (click)="refresh()">Anti Wrinkle</a>
-                    <a class="dropdown-item" href="http://{{host}}/src/#/product/catalog/Anti Aging" (click)="refresh()">Anti Aging</a>
-                    <a class="dropdown-item" href="http://{{host}}/src/#/product/catalog/Moisturiser" (click)="refresh()">Moisturiser</a>
-                    <a class="dropdown-item" href="http://{{host}}/src/#/product/catalog/Treatment Lotion" (click)="refresh()">Treatment Lotion</a>
-                    <a class="dropdown-item" href="http://{{host}}/src/#/product/catalog/Mask" (click)="refresh()">Mask</a>
-
+                    <div class="row">
+                        <div class="col-md-3"><a class="dropdown-item" href="http://{{host}}/src/#/product" oncontextmenu="return false;"><h4>All Products</h4></a></div>
+                        <div class="col"><h4>By Concern</h4></div>
+                        <div class="col"><h4>By Series</h4></div>
+                        <div class="col"><h4>Collections</h4></div>
+                        <div class="col-md-3"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col"><a href="http://{{host}}/src/#/product/catalog/Eye Care" class="dropdown-item" (click)="refresh()" oncontextmenu="return false;">Anti Wrinkle</a></div>
+                        <div class="col"><a href="http://{{host}}/src/#/product/catalog/Spring" class="dropdown-item" (click)="refresh()" oncontextmenu="return false;">Spring</a></div>
+                        <div class="col">Top 10 Best Sellers</div>
+                        <div class="col-md-3"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col"><a href="http://{{host}}/src/#/product/catalog/Anti Aging" class="dropdown-item" (click)="refresh()" oncontextmenu="return false;">Anti Aging</a></div>
+                        <div class="col"><a href="http://{{host}}/src/#/product/catalog/Summer" class="dropdown-item" (click)="refresh()" oncontextmenu="return false;">Summer</a></div>
+                        <div class="col"></div>
+                        <div class="col-md-3"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col"><a href="http://{{host}}/src/#/product/catalog/Moisturiser" class="dropdown-item" (click)="refresh()" oncontextmenu="return false;">Moisturiser</a></div>
+                        <div class="col"><a href="http://{{host}}/src/#/product/catalog/Autumn" class="dropdown-item" (click)="refresh()" oncontextmenu="return false;">Autumn</a></div>
+                        <div class="col"></div>
+                        <div class="col-md-3"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col"><a href="http://{{host}}/src/#/product/catalog/Treatment Lotion" class="dropdown-item" (click)="refresh()" oncontextmenu="return false;">Treatment Lotion</a></div>
+                        <div class="col"><a href="http://{{host}}/src/#/product/catalog/Winter" class="dropdown-item" (click)="refresh()" oncontextmenu="return false;">Winter</a></div>
+                        <div class="col"></div>
+                        <div class="col-md-3"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col"><a href="http://{{host}}/src/#/product/catalog/Mask" class="dropdown-item" (click)="refresh()" oncontextmenu="return false;">Mask</a></div>
+                        <div class="col"></div>
+                        <div class="col"></div>
+                        <div class="col-md-3"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col"><a href="http://{{host}}/src/#/product/catalog/Eye Care" class="dropdown-item" (click)="refresh()" oncontextmenu="return false;">Eye Care</a></div>
+                        <div class="col"></div>
+                        <div class="col"></div>
+                        <div class="col-md-3"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col"><a href="http://{{host}}/src/#/product/catalog/Acne" class="dropdown-item" (click)="refresh()" oncontextmenu="return false;">Acne</a></div>
+                        <div class="col"></div>
+                        <div class="col"></div>
+                        <div class="col-md-3"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col"><a href="http://{{host}}/src/#/product/catalog/Hydration" class="dropdown-item" (click)="refresh()" oncontextmenu="return false;">Hydration</a></div>
+                        <div class="col"></div>
+                        <div class="col"></div>
+                        <div class="col-md-3"></div>
+                    </div>
                 </div>
             </li>
         </ul>

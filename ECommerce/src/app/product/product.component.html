@@ -1,4 +1,4 @@
-﻿<div *ngIf="productList" id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-top:110px; margin-bottom:110px;">
+﻿<div *ngIf="productList" id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-top:210px;">
     <!-- Indicators -->
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -31,7 +31,7 @@
     </a>
 </div>
 
-<div>
+<div style="margin-bottom:110px;">
     <table class="table table-striped table-bordered">
         <tbody *ngIf="productList">
             <ng-container *ngFor="let product of productList;">
