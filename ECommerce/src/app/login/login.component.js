@@ -28,7 +28,7 @@ var LoginComponent = /** @class */ (function () {
     LoginComponent.prototype.ngOnInit = function () { };
     LoginComponent.prototype.close = function () {
         this.visible = false;
-        this.visibleChange.emit(true);
+        this.visibleChange.emit(this.visible);
     };
     //Generate cookie
     LoginComponent.prototype.generateCookie = function (email) {

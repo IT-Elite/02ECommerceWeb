@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
 
     close() {
         this.visible = false;
-        this.visibleChange.emit(true);
+        this.visibleChange.emit(this.visible);
     }
 
     //Generate cookie
