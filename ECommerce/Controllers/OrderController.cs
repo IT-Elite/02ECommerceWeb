@@ -71,6 +71,15 @@ namespace ECommerce.Controllers
                 // Add Order to the DataBase
                 int orderID = order.AddNewOrder(order);
 
+                // Send Confirmation Email
+                string toEmail = order.Email;
+                //string toEmail = "suorui2010@163.com";
+                string emailBody = Email.EmailTemplate(order);
+                //string emailBody = "Hello, this is a test email";
+                string emailSubject = "Online Order " + order.OrderID;
+                Email confirmemail = new Email(toEmail, emailBody, emailSubject);
+                bool status = confirmemail.SendEmail();
+
                 // Clear Cookies
                 if (orderID != 0)
                 {
@@ -138,6 +147,15 @@ namespace ECommerce.Controllers
 
                 // Add Order to the DataBase
                 int orderID = order.AddNewOrder(order);
+
+                // Send Confirmation Email
+                string toEmail = order.Email;
+                //string toEmail = "suorui2010@163.com";
+                string emailBody = Email.EmailTemplate(order);
+                //string emailBody = "Hello, this is a test email";
+                string emailSubject = "Online Order " + order.OrderID;
+                Email confirmemail = new Email(toEmail, emailBody, emailSubject);
+                bool status = confirmemail.SendEmail();
 
                 // Clear Cookies
                 if (orderID != 0)
