@@ -25,7 +25,7 @@ namespace ECommerce.Models
         [Display(Name = "BCC")]
         public string EmailBCC { get; set; }
 
-        public Email (string toEmail, string emailBody, string emailSubject)
+        public Email(string toEmail, string emailBody, string emailSubject)
         {
             this.ToEmail = toEmail;
             this.EMailBody = emailBody;
@@ -33,8 +33,8 @@ namespace ECommerce.Models
         }
         public bool SendEmail()
         {
-            string FromEmail = "suorui.nature@gmail.com";
-            string FromPassword = "suorui2010";
+            string FromEmail = "ecommerce2019.elite@gmail.com";
+            string FromPassword = "ecommerce12345";
             try
             {
                 //Configuring webMail class to send emails  
@@ -111,5 +111,5 @@ namespace ECommerce.Models
             return body.ToString();
         }
 
-    }    
+    }
 }

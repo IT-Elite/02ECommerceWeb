@@ -177,6 +177,7 @@
     </Compile>
     <Compile Include="Models\DatabaseConnection\SqlHelper.cs" />
     <Compile Include="Models\Entities\Address.cs" />
+    <Compile Include="Models\Entities\Email.cs" />
     <Compile Include="Models\Entities\ImageURL.cs" />
     <Compile Include="Models\Entities\Order.cs" />
     <Compile Include="Models\Entities\OrderItem.cs" />
