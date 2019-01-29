@@ -25,6 +25,7 @@ var contact_component_1 = require("./contact/contact.component");
 var sitemap_component_1 = require("./sitemap/sitemap.component");
 var cookies_service_1 = require("angular2-cookie/services/cookies.service");
 var window_service_1 = require("./window/window.service");
+var pagination_service_1 = require("./pagination/pagination.service");
 var appRoutes = [
     { path: 'home', component: home_component_1.HomeComponent },
     { path: 'order', component: order_component_1.OrderComponent },
@@ -45,7 +46,7 @@ var AppModule = /** @class */ (function () {
             declarations: [app_component_1.AppComponent, productList_component_1.ProductListComponent, product_component_1.ProductComponent, cart_component_1.CartComponent, nav_component_1.NavComponent, login_component_1.LoginComponent,
                 order_component_1.OrderComponent, home_component_1.HomeComponent, footer_component_1.FooterComponent, contact_component_1.ContactComponent, sitemap_component_1.SitemapComponent],
             bootstrap: [app_component_1.AppComponent],
-            providers: [product_service_1.ProductService, cookies_service_1.CookieService, window_service_1.WINDOW_PROVIDERS]
+            providers: [product_service_1.ProductService, cookies_service_1.CookieService, window_service_1.WINDOW_PROVIDERS, pagination_service_1.PagerService]
         })
     ], AppModule);
     return AppModule;

@@ -2,7 +2,8 @@
 import { IProduct } from "./product";
 import { ProductService } from "./product.service";
 import { Product } from "./product";
-import { ActivatedRoute } from "@angular/router"
+import { ActivatedRoute } from "@angular/router";
+import { PagerService } from "../pagination/pagination.service";
 
 @Component({
     selector: 'product-list',
@@ -14,8 +15,12 @@ export class ProductListComponent implements OnInit, OnDestroy {
     statusMsg: string;
     productList: Product[] = [];
     category: any;
+    // pager object
+    pager: any = {};
+    // paged items
+    pagedItems: any[];
 
-    constructor(private _productService: ProductService, private _activatedRoute: ActivatedRoute) { }
+    constructor(private _productService: ProductService, private _activatedRoute: ActivatedRoute, private _pagerService:PagerService ) { }
 
     ngOnInit() {
         //Get category parameter from url
@@ -27,6 +32,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
             this._productService.getProducts().subscribe((productData) => {
                 this.products = productData;
                 this.productFilter();
+                this.setPage(1);
             }, (error) => {
                 this.statusMsg = "Service Problem!";
             });
@@ -35,6 +41,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
             this._productService.getProductsByCategory(this.category).subscribe((productData) => {
                 this.products = productData;
                 this.productFilter();
+                this.setPage(1);
             }, (error) => {
                 this.statusMsg = "Service Problem!";
             });
@@ -83,5 +90,19 @@ export class ProductListComponent implements OnInit, OnDestroy {
             }
         }
         this.productList.push(prod);
+    }
+
+    //Pagination
+    setPage(page: number) {
+        if (page < 1 || page > this.pager.totalPages) {
+            return;
+        }
+
+        // get pager object from service
+        this.pager = this._pagerService.getPager(this.productList.length, page);
+
+        // get current page of items
+        this.pagedItems = this.productList.slice(this.pager.startIndex, this.pager.endIndex + 1);
+        console.log(this.pagedItems)
     }
 }

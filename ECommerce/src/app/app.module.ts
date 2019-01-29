@@ -19,6 +19,7 @@ import { SitemapComponent } from './sitemap/sitemap.component';
 
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { WINDOW_PROVIDERS } from './window/window.service';
+import { PagerService } from './pagination/pagination.service';
 
 
 const appRoutes: Routes = [
@@ -38,6 +39,6 @@ const appRoutes: Routes = [
     declarations: [AppComponent, ProductListComponent, ProductComponent, CartComponent, NavComponent, LoginComponent,
                    OrderComponent, HomeComponent, FooterComponent, ContactComponent, SitemapComponent],
     bootstrap: [AppComponent],
-    providers: [ProductService, CookieService, WINDOW_PROVIDERS]
+    providers: [ProductService, CookieService, WINDOW_PROVIDERS, PagerService]
 })
 export class AppModule { }

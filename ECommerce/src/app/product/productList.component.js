@@ -13,11 +13,15 @@ var core_1 = require("@angular/core");
 var product_service_1 = require("./product.service");
 var product_1 = require("./product");
 var router_1 = require("@angular/router");
+var pagination_service_1 = require("../pagination/pagination.service");
 var ProductListComponent = /** @class */ (function () {
-    function ProductListComponent(_productService, _activatedRoute) {
+    function ProductListComponent(_productService, _activatedRoute, _pagerService) {
         this._productService = _productService;
         this._activatedRoute = _activatedRoute;
+        this._pagerService = _pagerService;
         this.productList = [];
+        // pager object
+        this.pager = {};
     }
     ProductListComponent.prototype.ngOnInit = function () {
         //Get category parameter from url
@@ -28,6 +32,7 @@ var ProductListComponent = /** @class */ (function () {
             this._productService.getProducts().subscribe(function (productData) {
                 _this.products = productData;
                 _this.productFilter();
+                _this.setPage(1);
             }, function (error) {
                 _this.statusMsg = "Service Problem!";
             });
@@ -37,6 +42,7 @@ var ProductListComponent = /** @class */ (function () {
             this._productService.getProductsByCategory(this.category).subscribe(function (productData) {
                 _this.products = productData;
                 _this.productFilter();
+                _this.setPage(1);
             }, function (error) {
                 _this.statusMsg = "Service Problem!";
             });
@@ -82,12 +88,23 @@ var ProductListComponent = /** @class */ (function () {
         }
         this.productList.push(prod);
     };
+    //Pagination
+    ProductListComponent.prototype.setPage = function (page) {
+        if (page < 1 || page > this.pager.totalPages) {
+            return;
+        }
+        // get pager object from service
+        this.pager = this._pagerService.getPager(this.productList.length, page);
+        // get current page of items
+        this.pagedItems = this.productList.slice(this.pager.startIndex, this.pager.endIndex + 1);
+        console.log(this.pagedItems);
+    };
     ProductListComponent = __decorate([
         core_1.Component({
             selector: 'product-list',
             templateUrl: 'app/product/productList.component.html'
         }),
-        __metadata("design:paramtypes", [product_service_1.ProductService, router_1.ActivatedRoute])
+        __metadata("design:paramtypes", [product_service_1.ProductService, router_1.ActivatedRoute, pagination_service_1.PagerService])
     ], ProductListComponent);
     return ProductListComponent;
 }());
