@@ -40,6 +40,10 @@ var ProductService = /** @class */ (function () {
         return this._http.get("http://" + this.host + "/api/product/GetProductByCategory/" + category).map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
+    ProductService.prototype.getProductsTop10 = function () {
+        return this._http.get("http://" + this.host + "/api/Top10XML").map(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
     ProductService = __decorate([
         core_1.Injectable(),
         __param(1, core_1.Inject(window_service_1.WINDOW)),

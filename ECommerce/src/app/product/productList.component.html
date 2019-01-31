@@ -6,12 +6,13 @@
                 <h5>{{product.name}}</h5>
                 <h6>{{product.description}}</h6>
                 <div>{{product.price | currency:'AUD':true:'1.2-2'}}</div>
+                <h6 *ngIf="product.total!=undefined" style="color:red">{{product.total}} sold</h6>
                 <button class="btn btn-outline-dark btn-md" [routerLink]="['/product',product.productID]">SHOP NOW</button>
             </div>
         </ng-container>
 
         <div *ngIf="productList && productList.length<=0">
-            <h1>Loading products... please wait</h1>
+            <h4>Loading products... please wait</h4>
         </div>
     </div>
 

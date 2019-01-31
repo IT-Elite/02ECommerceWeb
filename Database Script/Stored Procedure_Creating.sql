@@ -224,3 +224,33 @@ BEGIN
 	ORDER BY Total DESC
 END
 GO
+
+-- =============================================
+-- Author: Justin Liu		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	Support top 10 listing as XML
+-- =============================================
+
+CREATE PROCEDURE [dbo].[USP.TOP10XML] 
+	-- Add the parameters for the stored procedure here
+	
+AS
+BEGIN
+	-- SET NOCOUNT ON added to prevent extra result sets from
+	-- interfering with SELECT statements.
+	SET NOCOUNT ON;
+
+    -- Insert statements for procedure here
+    SELECT A.productID,A.total,B.name,B.description,B.price,C.imageURL, D.keyword
+	FROM
+    (	SELECT TOP 10 ProductID, SUM(quantity) AS Total
+        FROM ORDERITEM 
+        GROUP BY ProductID
+		ORDER BY Total DESC       
+    ) AS A
+	INNER JOIN PRODUCT AS B ON (A.productID = B.productID)
+	INNER JOIN IMGURL AS C ON (A.productID = C.productID)
+	INNER JOIN CATEGORY AS D ON (A.productID = D.productID)
+	ORDER BY A.Total DESC
+END
+GO

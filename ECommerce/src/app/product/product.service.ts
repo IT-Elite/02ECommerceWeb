@@ -31,4 +31,9 @@ export class ProductService {
         return this._http.get("http://" + this.host + "/api/product/GetProductByCategory/" + category).map((response: Response) => <IProduct[]>response.json())
             .catch(this.handleError);
     }
+
+    getProductsTop10():Observable<IProduct[]> {
+        return this._http.get("http://" + this.host + "/api/Top10XML").map((response: Response) => <IProduct[]>response.json())
+            .catch(this.handleError);
+    }
 }

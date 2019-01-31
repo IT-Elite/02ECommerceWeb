@@ -101,7 +101,7 @@ var ProductComponent = /** @class */ (function () {
             }
             this._cookieService.put(this.prod_ID, quantityValue.toString(), { expires: date });
             //Display cookie for testing
-            this.cookieValue = this._cookieService.get(this.prod_ID);
+            alert("Item added to your shopping cart");
         }
         else {
             //Code for login user

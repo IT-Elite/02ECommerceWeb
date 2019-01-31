@@ -496,7 +496,6 @@ C:\My Documents\Website Project\IT Projects\02 E-Commerce\sprint 01\02 System De
 C:\My Documents\Website Project\IT Projects\02 E-Commerce\sprint 01\02 System Development\ECommerce\ECommerce\obj\Debug\ECommerce.csproj.CopyComplete
 C:\My Documents\Website Project\IT Projects\02 E-Commerce\sprint 01\02 System Development\ECommerce\ECommerce\obj\Debug\ECommerce.dll
 C:\My Documents\Website Project\IT Projects\02 E-Commerce\sprint 01\02 System Development\ECommerce\ECommerce\obj\Debug\ECommerce.pdb
-C:\Users\Justin\Desktop\IT-Elite\02ECommerceWeb\ECommerce\obj\Debug\ECommerce.csprojAssemblyReference.cache
 C:\Users\liude\Source\Repos\IT-Elite\02ECommerceWeb\ECommerce\bin\ApplicationInsights.config
 C:\Users\liude\Source\Repos\IT-Elite\02ECommerceWeb\ECommerce\bin\ECommerce.dll.config
 C:\Users\liude\Source\Repos\IT-Elite\02ECommerceWeb\ECommerce\bin\ECommerce.dll
@@ -598,3 +597,4 @@ C:\Users\liude\Source\Repos\IT-Elite\02ECommerceWeb\ECommerce\obj\Debug\ECommerc
 C:\Users\liude\Source\Repos\IT-Elite\02ECommerceWeb\ECommerce\obj\Debug\ECommerce.csproj.CopyComplete
 C:\Users\liude\Source\Repos\IT-Elite\02ECommerceWeb\ECommerce\obj\Debug\ECommerce.dll
 C:\Users\liude\Source\Repos\IT-Elite\02ECommerceWeb\ECommerce\obj\Debug\ECommerce.pdb
+C:\Users\Justin\Desktop\IT-Elite\02ECommerceWeb\ECommerce\obj\Debug\ECommerce.csprojAssemblyReference.cache

@@ -59,6 +59,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
@@ -166,6 +167,7 @@
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\Top10Controller.cs" />
+    <Compile Include="Controllers\Top10XMLController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -214,11 +216,29 @@
     <Compile Include="TOP10SELLER.cs">
       <DependentUpon>ProductModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Top10XML.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Top10XML.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Top10XML.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Top10XML.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Top10XML.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Top10XML.edmx</DependentUpon>
+    </Compile>
     <Compile Include="USP_GetProductbyCategory_Result.cs">
       <DependentUpon>ProductModel.tt</DependentUpon>
     </Compile>
     <Compile Include="USP_GetProductDetails_Result.cs">
       <DependentUpon>ProductModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="USP_TOP10XML_Result.cs">
+      <DependentUpon>Top10XML.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -390,20 +410,62 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="src\app\cart\cart.component.html" />
+    <Content Include="src\app\contact\contact.component.html" />
+    <Content Include="src\app\contact\contact.component.js" />
     <Content Include="src\app\home\home.component.html" />
     <Content Include="src\app\login\login.component.css" />
     <Content Include="src\app\login\login.component.html" />
     <Content Include="src\app\navigation\footer.component.html" />
     <Content Include="src\app\navigation\nav.component.html" />
     <Content Include="src\app\order\order.component.html" />
+    <Content Include="src\app\pagination\pagination.service.js" />
     <Content Include="src\app\product\product.component.html" />
     <Content Include="src\app\product\productList.component.html" />
+    <Content Include="src\app\sitemap\sitemap.component.html" />
+    <Content Include="src\app\sitemap\sitemap.component.js" />
     <Content Include="src\favicon.ico" />
+    <Content Include="src\img\0101.jpg" />
+    <Content Include="src\img\0102.jpg" />
+    <Content Include="src\img\0103.jpg" />
+    <Content Include="src\img\0104.jpg" />
+    <Content Include="src\img\0201.jpg" />
+    <Content Include="src\img\0301.jpg" />
+    <Content Include="src\img\0302.jpg" />
+    <Content Include="src\img\0401.jpg" />
+    <Content Include="src\img\0501.jpg" />
+    <Content Include="src\img\0601.jpg" />
+    <Content Include="src\img\0701.jpg" />
+    <Content Include="src\img\0801.jpg" />
+    <Content Include="src\img\0802.jpg" />
+    <Content Include="src\img\0901.jpg" />
+    <Content Include="src\img\0902.jpg" />
+    <Content Include="src\img\1001.jpg" />
+    <Content Include="src\img\1002.jpg" />
+    <Content Include="src\img\1101.jpg" />
+    <Content Include="src\img\1201.jpg" />
+    <Content Include="src\img\1301.jpg" />
+    <Content Include="src\img\1401.jpg" />
+    <Content Include="src\img\1501.jpg" />
+    <Content Include="src\img\1601.jpg" />
+    <Content Include="src\img\1701.jpg" />
+    <Content Include="src\img\1801.jpg" />
+    <Content Include="src\img\1901.jpg" />
+    <Content Include="src\img\2001.jpg" />
     <Content Include="src\index.html" />
     <Content Include="src\styles.css" />
     <Content Include="src\systemjs-angular-loader.js" />
     <Content Include="src\systemjs.config.extras.js" />
     <Content Include="src\systemjs.config.js" />
+    <Content Include="Top10XML.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Top10XML.edmx</DependentUpon>
+      <LastGenOutput>Top10XML.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Top10XML.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Top10XML.edmx</DependentUpon>
+      <LastGenOutput>Top10XML.cs</LastGenOutput>
+    </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -442,6 +504,16 @@
     <Content Include="Views\Order\GetOrder.cshtml" />
     <Content Include="Views\Order\AddOrder.cshtml" />
     <Content Include="Views\Top10\Index.cshtml" />
+    <Content Include="src\app\pagination\pagination.service.js.map" />
+    <Content Include="src\app\contact\contact.component.js.map" />
+    <Content Include="src\app\sitemap\sitemap.component.js.map" />
+    <EntityDeploy Include="Top10XML.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Top10XML.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Top10XML.edmx.diagram">
+      <DependentUpon>Top10XML.edmx</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Default\" />
@@ -467,15 +539,18 @@
     <TypeScriptCompile Include="src\app\app.component.ts" />
     <TypeScriptCompile Include="src\app\app.module.ts" />
     <TypeScriptCompile Include="src\app\cart\cart.component.ts" />
+    <TypeScriptCompile Include="src\app\contact\contact.component.ts" />
     <TypeScriptCompile Include="src\app\home\home.component.ts" />
     <TypeScriptCompile Include="src\app\login\login.component.ts" />
     <TypeScriptCompile Include="src\app\navigation\footer.component.ts" />
     <TypeScriptCompile Include="src\app\navigation\nav.component.ts" />
     <TypeScriptCompile Include="src\app\order\order.component.ts" />
+    <TypeScriptCompile Include="src\app\pagination\pagination.service.ts" />
     <TypeScriptCompile Include="src\app\product\product.component.ts" />
     <TypeScriptCompile Include="src\app\product\product.service.ts" />
     <TypeScriptCompile Include="src\app\product\product.ts" />
     <TypeScriptCompile Include="src\app\product\productList.component.ts" />
+    <TypeScriptCompile Include="src\app\sitemap\sitemap.component.ts" />
     <TypeScriptCompile Include="src\app\window\window.service.ts" />
     <TypeScriptCompile Include="src\main.ts" />
   </ItemGroup>
