@@ -16,10 +16,11 @@ var product_2 = require("./product");
 var router_1 = require("@angular/router");
 var pagination_service_1 = require("../pagination/pagination.service");
 var ProductListComponent = /** @class */ (function () {
-    function ProductListComponent(_productService, _activatedRoute, _pagerService) {
+    function ProductListComponent(_productService, _activatedRoute, _pagerService, _router) {
         this._productService = _productService;
         this._activatedRoute = _activatedRoute;
         this._pagerService = _pagerService;
+        this._router = _router;
         this.productList = []; //Union type to hold either Product or Prod_top10 objects
         // pager object
         this.pager = {};
@@ -27,38 +28,46 @@ var ProductListComponent = /** @class */ (function () {
     ProductListComponent.prototype.ngOnInit = function () {
         //Get category parameter from url
         var _this = this;
-        this.category = this._activatedRoute.snapshot.params['category'];
-        //console.log(this.category);
-        if (this.category == null) {
-            this._productService.getProducts().subscribe(function (productData) {
-                _this.products = productData;
-                _this.productFilter();
-                _this.setPage(1);
-            }, function (error) {
-                _this.statusMsg = "Service Problem!";
-            });
-        }
-        else {
-            console.log("we are in else: " + this.category);
-            if (this.category == "top10") {
-                this._productService.getProductsTop10().subscribe(function (productData) {
+        this._activatedRoute.paramMap.subscribe(function (params) {
+            _this.category = params.get('category');
+            console.log("The param is " + _this.category);
+            //Reset all global storages
+            _this.products = [];
+            _this.productList = [];
+            if (_this.category == null) {
+                _this._productService.getProducts().subscribe(function (productData) {
                     _this.products = productData;
-                    _this.productFilter_Top10();
+                    _this.productFilter();
                     _this.setPage(1);
+                    _this._router.navigate(['/product']);
                 }, function (error) {
                     _this.statusMsg = "Service Problem!";
                 });
             }
             else {
-                this._productService.getProductsByCategory(this.category).subscribe(function (productData) {
-                    _this.products = productData;
-                    _this.productFilter();
-                    _this.setPage(1);
-                }, function (error) {
-                    _this.statusMsg = "Service Problem!";
-                });
+                console.log("we are in else: " + _this.category);
+                if (_this.category == "top10") {
+                    _this._productService.getProductsTop10().subscribe(function (productData) {
+                        _this.products = productData;
+                        _this.productFilter_Top10();
+                        _this.setPage(1);
+                        _this._router.navigate(['product/catalog/top10']);
+                    }, function (error) {
+                        _this.statusMsg = "Service Problem!";
+                    });
+                }
+                else {
+                    _this._productService.getProductsByCategory(_this.category).subscribe(function (productData) {
+                        _this.products = productData;
+                        _this.productFilter();
+                        _this.setPage(1);
+                        _this._router.navigate(['product/catalog', _this.category]);
+                    }, function (error) {
+                        _this.statusMsg = "Service Problem!";
+                    });
+                }
             }
-        }
+        });
     };
     ProductListComponent.prototype.ngOnDestroy = function () {
     };
@@ -111,7 +120,7 @@ var ProductListComponent = /** @class */ (function () {
             if (prod.productID != null && prod.productID != product.productID) { //This loop has got a new product object in prod which is different to the previous one
                 this.productList.push(prod);
                 var prod = new product_1.Prod_top10(null, null, null, null, [], [], null);
-                console.log(this.productList);
+                //console.log(this.productList)
                 prod.productID = product.productID;
                 prod.name = product.name;
                 prod.description = product.description;
@@ -150,14 +159,14 @@ var ProductListComponent = /** @class */ (function () {
         this.pager = this._pagerService.getPager(this.productList.length, page);
         // get current page of items
         this.pagedItems = this.productList.slice(this.pager.startIndex, this.pager.endIndex + 1);
-        console.log(this.pagedItems);
+        //console.log(this.pagedItems)
     };
     ProductListComponent = __decorate([
         core_1.Component({
             selector: 'product-list',
             templateUrl: 'app/product/productList.component.html'
         }),
-        __metadata("design:paramtypes", [product_service_1.ProductService, router_1.ActivatedRoute, pagination_service_1.PagerService])
+        __metadata("design:paramtypes", [product_service_1.ProductService, router_1.ActivatedRoute, pagination_service_1.PagerService, router_1.Router])
     ], ProductListComponent);
     return ProductListComponent;
 }());

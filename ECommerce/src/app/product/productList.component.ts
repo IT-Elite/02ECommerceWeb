@@ -2,7 +2,7 @@
 import { IProduct, Prod_top10 } from "./product";
 import { ProductService } from "./product.service";
 import { Product } from "./product";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { PagerService } from "../pagination/pagination.service";
 
 @Component({
@@ -20,43 +20,54 @@ export class ProductListComponent implements OnInit, OnDestroy {
     // paged items
     pagedItems: any[];
 
-    constructor(private _productService: ProductService, private _activatedRoute: ActivatedRoute, private _pagerService:PagerService ) { }
+    constructor(private _productService: ProductService, private _activatedRoute: ActivatedRoute, private _pagerService:PagerService, private _router:Router ) { }
 
     ngOnInit() {
         //Get category parameter from url
 
-        this.category = this._activatedRoute.snapshot.params['category'];
-        //console.log(this.category);
+        this._activatedRoute.paramMap.subscribe(params => {
+            this.category = params.get('category');
 
-        if (this.category == null) {
-            this._productService.getProducts().subscribe((productData) => {
-                this.products = productData;
-                this.productFilter();
-                this.setPage(1);
-            }, (error) => {
-                this.statusMsg = "Service Problem!";
-            });
-        } else {
-            console.log("we are in else: " + this.category);
-            if (this.category == "top10") {
-                this._productService.getProductsTop10().subscribe((productData) => {
-                    this.products = productData;
-                    this.productFilter_Top10();
-                    this.setPage(1);
-                }, (error) => {
-                    this.statusMsg = "Service Problem!";
-                });
-            }
-            else {
-                this._productService.getProductsByCategory(this.category).subscribe((productData) => {
+            console.log("The param is " + this.category);
+
+            //Reset all global storages
+            this.products = [];
+            this.productList = [];
+
+            if (this.category == null) {
+                this._productService.getProducts().subscribe((productData) => {
                     this.products = productData;
                     this.productFilter();
                     this.setPage(1);
+                    this._router.navigate(['/product']);
                 }, (error) => {
                     this.statusMsg = "Service Problem!";
                 });
+            } else {
+                console.log("we are in else: " + this.category);
+                if (this.category == "top10") {
+                    this._productService.getProductsTop10().subscribe((productData) => {
+                        this.products = productData;
+                        this.productFilter_Top10();
+                        this.setPage(1);
+                        this._router.navigate(['product/catalog/top10']);
+                    }, (error) => {
+                        this.statusMsg = "Service Problem!";
+                    });
+                }
+                else {
+                    this._productService.getProductsByCategory(this.category).subscribe((productData) => {
+                        this.products = productData;
+                        this.productFilter();
+                        this.setPage(1);
+                        this._router.navigate(['product/catalog', this.category]);
+                    }, (error) => {
+                        this.statusMsg = "Service Problem!";
+                    });
+                }
             }
-        }
+        });
+        
     }
 
     ngOnDestroy() {
@@ -114,7 +125,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
             if (prod.productID != null && prod.productID != product.productID) {        //This loop has got a new product object in prod which is different to the previous one
                 this.productList.push(prod);
                 var prod = new Prod_top10(null, null, null, null, [], [], null);
-                console.log(this.productList)
+                //console.log(this.productList)
 
                 prod.productID = product.productID;
                 prod.name = product.name;
@@ -158,6 +169,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
         // get current page of items
         this.pagedItems = this.productList.slice(this.pager.startIndex, this.pager.endIndex + 1);
-        console.log(this.pagedItems)
+        //console.log(this.pagedItems)
     }
 }
